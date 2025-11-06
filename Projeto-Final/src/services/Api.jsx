@@ -9,7 +9,7 @@ export const Api = axios.create({
 
     params: {
         api_Key: apiKey,
-
         language: 'pt-BR'
     }
 });
+
