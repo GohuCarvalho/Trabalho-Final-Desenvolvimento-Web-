@@ -2,14 +2,15 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { ApiProvider } from './hooks/AuthContext';
+
+import { Routers } from './routers/Routers';
 
 function App() {
-  <ApiProvider>
+ 
+ <Routers>
 
-    {/* dashbord do TMDB */}
 
-  </ApiProvider>
+ </Routers>
 }
 
 export default App
