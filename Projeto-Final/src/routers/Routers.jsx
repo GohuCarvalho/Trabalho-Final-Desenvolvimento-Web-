@@ -1,14 +1,12 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import { ApiProvider } from '../hooks/AuthContext'
-import { Login } from '../pages/Login/index';
 import Login from '../pages/Login';
-
 
 import { Home } from './../pages/Home/index';
 import Header from '../components/Header';
 import { Maratonas } from '../pages/Maratonas/index';
 import { FilmesPopulares } from '../pages/FilmesPopulares';
-import { Home } from '../pages/Home';
+import { SeriesPopulares } from '../pages/SeriesPopulares';
 
 
 export const Routers = () => {
@@ -21,6 +19,7 @@ export const Routers = () => {
                     <Route path="/" element={<Login />} />
                     <Route path='/home' element= {<Home />} />
                     <Route path="/filmes" element={<FilmesPopulares/>} />
+                    <Route path="/series" element={<SeriesPopulares/>} />
                     <Route path="/maratonas" element={<Maratonas/>} />
                 </Routes>
             </ApiProvider>
