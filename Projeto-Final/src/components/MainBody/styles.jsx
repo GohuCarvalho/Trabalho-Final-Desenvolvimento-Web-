@@ -9,5 +9,6 @@ export const Container = styled.div`
     padding: 0;
     height: 100vh;
     width: 100vw;
-    background-color: #171814ff; 
+    background: linear-gradient(180deg, #362589 0%, #1a0450 50%, #000000 100%);
+    background-attachment: fixed;
 `
