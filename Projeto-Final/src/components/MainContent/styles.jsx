@@ -6,4 +6,7 @@ export const InputContainer = styled.div`
     width: 80%;
     background-color: #262525ff;
     
+    height: 100%;
+    width: 90%;
+    background-color: #262525ff;
 `;
