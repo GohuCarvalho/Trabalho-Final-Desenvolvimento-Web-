@@ -1,25 +1,24 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import { ApiProvider } from '../hooks/AuthContext'
-import { ApiProvider } from './../hooks/AuthContext';
 import { Login } from '../pages/Login/index';
-import { Maratonas } from '../pages/Maratonas';
+
 import { Home } from './../pages/Home/index';
+import Header from '../components/Header';
+import { Maratonas } from '../pages/Maratonas/index';
 
 
 export const Routers = () => {
 
     return (
         <BrowserRouter>
-        <ApiProvider>
-        <Routes>
-
-            <Route path="/Login" element={<Login />}>
-            <Route path="/Home" elemennt={<Home />} />
-            <Route path="/Maratonas" elemennt={<Maratonas />} />
-            </Route>
-            
-        </Routes>
-        </ApiProvider>
+            <ApiProvider>
+                <Header />
+                <Routes>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/maratonas" element={<Maratonas/>} />
+                </Routes>
+            </ApiProvider>
         </BrowserRouter>
     )
 }

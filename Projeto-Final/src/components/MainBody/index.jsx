@@ -1,4 +1,3 @@
-// src/components/MainBody/index.jsx
 import React from 'react';
 import { Container } from './styles';
 
