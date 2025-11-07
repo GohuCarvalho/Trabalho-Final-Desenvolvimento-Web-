@@ -1,36 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { Api } from '../../services/Api';
-import MainContent from '../../components/MainContent/index';
-
-// TMDB_IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
-
-
+import React from 'react';
+import { MovieList } from '../../components/MovieList';
+import { MainContent } from './style';
 
 export function Home() {
-    const [movies, setMovies] = useState([""]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-
-    useEffect(() => {
-        const fetchMovies = async () => {
-            try {
-                const resposta = await Api.get('/movie/popular')
-                setMovies(resposta.data.result);
-            } catch { };
-        }
-    }
-    )
-
-
-    return (<>
-
+    return (
         <MainContent>
-<h1>Home</h1>
+            <h1>Filmes Populares</h1>
+            <MovieList />
         </MainContent>
-
-    </>)
-
+    );
 }
-
-

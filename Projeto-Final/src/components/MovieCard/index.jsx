@@ -1,25 +1,32 @@
-import React from 'react'
+import React from 'react';
+import {
+    CardWrapper,
+    Poster,
+    MovieDetails,
+    Title,
+    Rating
+} from './style';
 
-TMDB_IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
+const TMDB_IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
 export function Moviecard({ movie }) {
 
-    const imageUrl = movie.poster_path ? `${TMDB_IMAGE_BASE_URL}${movie.poster_path}` : '';
+    const imageUrl = movie.poster_path
+        ? `${TMDB_IMAGE_BASE_URL}${movie.poster_path}`
+        : 'https://via.placeholder.com/500x750?text=Sem+Imagem';
 
     return (
-        <div className="movie-card">
-            <img
+        <CardWrapper>
+            <Poster
                 src={imageUrl}
                 alt={`Capa do Filme ${movie.title}`}
-                className='movie-poster'
             />
-            <div className='movie-details'>
-                <h2>{movie.title}</h2>
-                <p className='movie-assessment'>
+            <MovieDetails>
+                <Title>{movie.title}</Title>
+                <Rating>
                     <strong>Avaliação: </strong> {movie.vote_average.toFixed(1)}
-                </p>
-            </div>
-        </div>
-    )
+                </Rating>
+            </MovieDetails>
+        </CardWrapper>
+    );
 }
-
