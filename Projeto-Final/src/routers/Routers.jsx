@@ -14,7 +14,7 @@ export const Routers = () => {
             <ApiProvider>
                 <Header />
                 <Routes>
-                    <Route path="/login" element={<Login />} />
+                    <Route path="/" element={<Login />} />
                     <Route path="/home" element={<Home />} />
                     <Route path="/maratonas" element={<Maratonas/>} />
                 </Routes>

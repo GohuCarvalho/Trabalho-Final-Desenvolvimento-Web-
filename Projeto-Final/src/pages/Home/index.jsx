@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Api } from '../../services/Api';
-import MainBody from "../../components/MainBody";
+import MainContent from '../../components/MainContent/index';
 
 // TMDB_IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
@@ -26,7 +26,7 @@ export function Home() {
     return (<>
 
         <MainContent>
-
+<h1>Home</h1>
         </MainContent>
 
     </>)

@@ -5,7 +5,7 @@ export function Maratonas () {
     return (
         <>
         <MainContent>
-<span>IIIIIAAAAEEEEEEEÊ</span>
+            <h1>Maratonas</h1>
         </MainContent>
         </>
     )
