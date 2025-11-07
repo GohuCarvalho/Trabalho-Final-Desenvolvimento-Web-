@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Api } from '../../services/Api';
 import { Moviecard } from '../MovieCard';
-import {
-    ListWrapper,
-    LoadingMessage,
-    ErrorMessage
-} from './style';
+import { RowWrapper, RowTitle, CardContainer, LoadingMessage } from './style';
 
 const TMDB_BEARER_TOKEN = import.meta.env.VITE_TMDB_BEARER_TOKEN
 
-export function MovieList() {
+export function MovieRow({ title, fetchUrl }) {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
     useEffect(() => {
+        setLoading(true); 
+
         const fetchMovies = async () => {
             const config = {
                 headers: {
@@ -24,32 +21,36 @@ export function MovieList() {
             };
 
             try {
-                const resposta = await Api.get('/movie/popular', config);
+                const resposta = await Api.get(fetchUrl, config);
                 setMovies(resposta.data.results);
             } catch (err) {
-                console.error("Erro ao buscar filmes:", err);
-                setError(err.message);
+                console.error(`Erro ao buscar ${title}:`, err);
             } finally {
                 setLoading(false);
             }
         };
 
         fetchMovies();
-    }, []);
+
+    }, [fetchUrl, title]); 
 
     if (loading) {
-        return <LoadingMessage>Carregando...</LoadingMessage>;
-    }
-
-    if (error) {
-        return <ErrorMessage>Erro: {error}</ErrorMessage>;
+        return (
+            <RowWrapper>
+                <RowTitle>{title}</RowTitle>
+                <LoadingMessage>Carregando...</LoadingMessage>
+            </RowWrapper>
+        );
     }
 
     return (
-        <ListWrapper>
-            {movies.map((movie) => (
-                <Moviecard key={movie.id} movie={movie} />
-            ))}
-        </ListWrapper>
+        <RowWrapper>
+            <RowTitle>{title}</RowTitle>
+            <CardContainer>
+                {movies.map((movie) => (
+                    <Moviecard key={movie.id} movie={movie} />
+                ))}
+            </CardContainer>
+        </RowWrapper>
     );
 }
