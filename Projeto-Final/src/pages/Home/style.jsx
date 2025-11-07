@@ -1,30 +1,68 @@
 import styled from 'styled-components';
 
-export const RowWrapper = styled.div`
-  margin-bottom: 30px;
-`;
+export const HeroWrapper = styled.div`
+  width: 100%;
+  height: 40vh; 
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.8) 100%
+    ),
+    url(${(props) => props.$backgroundImage});
+  background-size: cover;
+  background-position: center center; 
+  background-repeat: no-repeat;
 
-export const RowTitle = styled.h2`
-  color: #e5e5e5;
-  font-size: 1.5rem;
-  margin-left: 20px;
-  margin-bottom: 15px;
-`;
-
-export const CardContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 0 20px;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-end; 
+  align-items: center;
+  text-align: center;
 
-  > div {
-    width: 200px; 
+  color: white;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+  padding: 30px 60px;
+
+  margin: 0;
+  position: relative;
+  left: 0;
+  top: 0;
+
+  h1 {
+    font-size: 2.4rem;
+    margin-bottom: 10px;
+  }
+
+  p {
+    max-width: 900px;
+    font-size: 1rem;
+    line-height: 1.6;
   }
 `;
 
+export const HeroTitle = styled.h2`
+    font-size: 3rem;
+    margin: 0 0 10px 0;
+`;
+
+export const HeroDescription = styled.p`
+    font-size: 1.1rem;
+    max-width: 60%;
+    margin: 0;
+`;
+
+export const MainContent = styled.main`
+  
+    padding-top: 20px;
+`;
+
 export const LoadingMessage = styled.p`
-  color: #fff;
-  text-align: center;
-  margin-top: 50px;
+    color: #fff;
+    text-align: center;
+    margin-top: 50px;
+`;
+export const ErrorMessage = styled.p`
+    color: red;
+    text-align: center;
+    margin-top: 50px;
 `;

@@ -47,7 +47,7 @@ export default function Login() {
   const currentStyle = vibe ? vibeStyles[vibe] : {};
   
   return (
-  <MainContent>
+  <>
 
     <Container background={currentStyle.background}>
       <Content>
@@ -83,7 +83,7 @@ export default function Login() {
         </Form>
       </Content>
     </Container>
-  </MainContent>
+  </>
   );
     
 }

@@ -1,43 +1,77 @@
-import React from 'react'
+import React, { useState } from "react";
+import { LogoImage, NavbarBrandLink, InputProcurar } from './styles';
+import logoDefault from '../../assets/Logos/popcornTv-logo.svg'; 
+import logoHover from '../../assets/Logos/popcornTv-logo-hovered.svg'; 
 
-export function NavBar(){
-    return(
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">PopcornStore</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+const Header = ({ searchTerm, onSearchChange }) => {
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Maratonas</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Filmes
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Populares</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisa</button>
-    </form>
-  </div>
-</nav>
-    )
-}
+    const [isHovered, setIsHovered] = useState(false);
 
-// pesquisa= useState/ include
+    const handleMouseEnter = () => setIsHovered(true);
+    const handleMouseLeave = () => setIsHovered(false);
+
+    const logoSrc = isHovered ? logoHover : logoDefault;
+
+    return (
+
+        <nav
+            className="navbar navbar-expand-lg bg-body-tertiary w-100 rounded-pill p-1 m-4 opacity-85">
+            <div className="container">
+                <NavbarBrandLink
+                    href="/home"
+                    aria-label="Logo-PopcornTv"
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                >
+                    <LogoImage src={logoSrc} />
+                </NavbarBrandLink>
+
+                <button
+                    className="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarTogglerDemo02"
+                    aria-controls="navbarTogglerDemo02"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li className="nav-item">
+                            <a className="nav-link active" aria-current="page" href="/maratonas">Maratonas</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="/filmes">Filmes Populares</a>
+                        </li>
+                    </ul>
+                    <form className="d-flex" role="search" onSubmit={(e) => e.preventDefault()}>
+                        <InputProcurar
+                            className="form-control me-2 focus-ring"
+                            type="search"
+                            placeholder="Procure por nome"
+                            aria-label="Search"
+                            value={searchTerm}
+                            onChange={(e) => onSearchChange(e.target.value)}
+                        />
+                        <button
+                            className="btn btn-outline-success"
+                            type="submit"
+                            style={{
+                                '--bs-btn-bg': '#5333c1',
+                                '--bs-btn-color': '#fff',
+                                '--bs-btn-hover-color': '#fff',
+                                '--bs-btn-hover-bg': '#362589',
+                            }}>
+                            Search
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+        </nav>
+    );
+};
+
+export default Header;
