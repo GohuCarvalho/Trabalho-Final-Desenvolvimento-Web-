@@ -1,6 +1,7 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import { ApiProvider } from '../hooks/AuthContext'
-import { Login } from '../pages/Login/index';
+import Login from '../pages/Login';
+
 
 import { Home } from './../pages/Home/index';
 import Header from '../components/Header';
