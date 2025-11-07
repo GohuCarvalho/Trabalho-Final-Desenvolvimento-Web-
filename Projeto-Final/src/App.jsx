@@ -10,7 +10,6 @@ function App() {
   return (
     <>
       <MainBody>
-        
         <Routers/>
       </MainBody>
     </>

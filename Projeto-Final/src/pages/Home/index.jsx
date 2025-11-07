@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Api } from '../../services/Api';
-import MainContent from '../../components/MainContent'; 
-import { Hero } from '../../components/Hero';
-import { MovieRow } from '../../components/MovieRow';
-import { LoadingMessage } from './style'; 
+import { Api } from '../../services/Api'; 
+import { Hero } from '../../components/Hero'; 
+import { MovieRow } from '../../components/MovieRow'; 
 
-const TMDB_BEARER_TOKEN = import.meta.env.VITE_TMDB_BEARER_TOKEN
+const TMDB_BEARER_TOKEN = import.meta.env.VITE_TMDB_BEARER_TOKEN;
+
+const tmdbRequests = {
+  fetchPopular: '/movie/popular',
+  fetchTopRated: '/movie/top_rated',
+  fetchTrending: '/trending/movie/week',
+};
 
 export function Home() {
     const [heroMovie, setHeroMovie] = useState(null);
-    const [loadingHero, setLoadingHero] = useState(true);
-    const [errorHero, setErrorHero] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchHeroMovie = async () => {
@@ -21,39 +24,45 @@ export function Home() {
                 }
             };
             try {
-                const resposta = await Api.get('/movie/now_playing', config);
-                const featuredMovie = resposta.data.results.find(m => m.backdrop_path);
-                setHeroMovie(featuredMovie || resposta.data.results[0]);
+                const resposta = await Api.get(tmdbRequests.fetchPopular, config);
+                const movies = resposta.data.results;
+                
+                const randomMovie = movies[Math.floor(Math.random() * movies.length)];
+                setHeroMovie(randomMovie);
+                
             } catch (err) {
-                setErrorHero(err.message);
+                console.error("Erro ao buscar filme para o Hero:", err);
             } finally {
-                setLoadingHero(false);
+                setLoading(false);
             }
         };
+
         fetchHeroMovie();
-    }, []);
+    }, []); 
 
-    
+    if (loading) {
+        return <div>Carregando...</div>; 
+    }
+
     return (
-        <>
-        {loadingHero && <LoadingMessage>Carregando...</LoadingMessage>}
-        {errorHero && <LoadingMessage>Erro ao carregar destaque.</LoadingMessage>}
-        {heroMovie && <Hero movie={heroMovie} />}
+        <div>
+            {heroMovie && <Hero movie={heroMovie} />}
 
-            <MainContent>
-                <MovieRow 
-                    title="Populares" 
-                    fetchUrl="/movie/popular" 
-                    />
-                <MovieRow 
-                    title="Mais Votados" 
-                    fetchUrl="/movie/top_rated" 
-                />
-                <MovieRow 
-                    title="Próximos Lançamentos" 
-                    fetchUrl="/movie/upcoming" 
-                    />
-            </MainContent>
-         </>
+            <MovieRow 
+                title="Populares" 
+                fetchUrl={tmdbRequests.fetchPopular} 
+            />
+
+            <MovieRow 
+                title="Mais Votados" 
+                fetchUrl={tmdbRequests.fetchTopRated} 
+            />
+
+             <MovieRow 
+                title="Em Alta" 
+                fetchUrl={tmdbRequests.fetchTrending} 
+            /> 
+            
+        </div>
     );
 }
