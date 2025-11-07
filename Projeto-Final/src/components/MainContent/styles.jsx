@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
 export const InputContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 2rem;
-    width: 80vw;
-    height: 100%;
+    display: block; 
+    width: 100%; 
+    max-width: 1400px; 
+    min-height: 100%;
     background-color: #262525ff;
+    margin: 40px auto; 
+    padding: 2rem 0; 
+    border-radius: 8px; 
 
 `;
