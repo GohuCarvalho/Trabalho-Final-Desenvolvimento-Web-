@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Container,
   Content,
@@ -10,12 +11,15 @@ import {
   SubmitButton,
   TicketFooter,
 } from "./style";
+import MainContent from "../../components/MainContent";
+
 
 export default function Login() {
+
   const [vibe, setVibe] = useState(null);
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-
+  
   const vibes = [
     { label: "Relaxar ✌️", key: "Relaxar" },
     { label: "Rir 😂", key: "Rir" },
@@ -32,17 +36,19 @@ export default function Login() {
       background: "linear-gradient(to right, #fbc2eb, #a6c1ee)",
       buttonColor: "#ff6f61",
       message: "Prepare-se para dar boas risadas 😂",
-    },
-    "Me inspirar": {
-      background: "linear-gradient(to right, #fdfbfb, #ebedee)",
-      buttonColor: "#ffb347",
-      message: "Hoje é dia de criar algo incrível 💡",
-    },
+      },
+      "Me inspirar": {
+        background: "linear-gradient(to right, #fdfbfb, #ebedee)",
+        buttonColor: "#ffb347",
+        message: "Hoje é dia de criar algo incrível 💡",
+      },
   };
-
+  
   const currentStyle = vibe ? vibeStyles[vibe] : {};
-
+  
   return (
+  <MainContent>
+
     <Container background={currentStyle.background}>
       <Content>
         <Title>{vibe ? currentStyle.message : "Escolha sua vibe para entrar"}</Title>
@@ -61,19 +67,23 @@ export default function Login() {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-          />
+            />
           <Input
             type="password"
             placeholder="Senha"
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
-          />
+            />
+            <Link to="/home" style={{ textDecoration: 'none'}} >
           <SubmitButton color={currentStyle.buttonColor}>Entrar</SubmitButton>
+            </Link>
           <TicketFooter>
             Não tem ingresso? <a href="/cadastro">Cadastre-se</a>
           </TicketFooter>
         </Form>
       </Content>
     </Container>
+  </MainContent>
   );
+    
 }
