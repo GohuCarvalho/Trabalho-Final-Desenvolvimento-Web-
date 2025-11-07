@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { LogoImage, NavbarBrandLink, InputProcurar } from './styles';
-import logoDefault from '../../assets/Logos/logo-pop.png';
-import logoHover from '../../assets/Logos/logo-pop-hovered.png';
+import logoDefault from '../../assets/Logos/popcornTv-logo.svg';
+import logoHover from '../../assets/Logos/popcornTv-logo-hovered.svg';
 
 
 
