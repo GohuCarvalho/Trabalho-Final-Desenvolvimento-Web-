@@ -1,14 +1,12 @@
 import styled from 'styled-components';
 
-export const MainContent = styled.main`
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-
-    h1 {
-        color: #ffffff;
-        font-size: 2.5rem;
-        text-align: center;
-        margin-bottom: 20px;
-    }
+export const LoadingMessage = styled.div`
+    color: white;
+    font-size: 1.5rem;
+    padding: 50px;
+    text-align: center;
+    height: 60vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
