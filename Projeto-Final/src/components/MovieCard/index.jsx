@@ -1,18 +1,17 @@
-<<<<<<< Updated upstream
 import React from 'react'
 
 TMDB_IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
-export function Moviecard ({movie}){
+export function Moviecard({ movie }) {
 
     const imageUrl = movie.poster_path ? `${TMDB_IMAGE_BASE_URL}${movie.poster_path}` : '';
 
-    return(
+    return (
         <div className="movie-card">
             <img
-              src={imageUrl}
-              alt={`Capa do Filme ${movie.title}`}
-              className='movie-poster'
+                src={imageUrl}
+                alt={`Capa do Filme ${movie.title}`}
+                className='movie-poster'
             />
             <div className='movie-details'>
                 <h2>{movie.title}</h2>
@@ -24,6 +23,3 @@ export function Moviecard ({movie}){
     )
 }
 
-=======
-import react from "react";
->>>>>>> Stashed changes
