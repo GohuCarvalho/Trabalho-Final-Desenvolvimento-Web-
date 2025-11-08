@@ -18,26 +18,27 @@ export function Home({ searchTerm }) {
   const [loading, setLoading] = useState(true);
   const [selectedItem, setSelectedItem] = useState(null);
 
-  useEffect(() => {
-    const fetchHeroMovie = async () => {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${TMDB_BEARER_TOKEN}`,
-          accept: "application/json",
-        },
-      };
-      try {
-        const resposta = await Api.get(tmdbRequests.fetchPopular, config);
-        const movies = resposta.data.results;
-
-        const randomMovie = movies[Math.floor(Math.random() * movies.length)];
-        setHeroMovie(randomMovie);
-      } catch (err) {
-        console.error("Erro ao buscar filme para o Hero:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
+    useEffect(() => {
+        const fetchHeroMovie = async () => {
+            const config = {
+                headers: {
+                    'Authorization': `Bearer ${TMDB_BEARER_TOKEN}`,
+                    'accept': 'application/json'
+                }
+            };
+            try {
+                const resposta = await Api.get(tmdbRequests.fetchPopular, config);
+                const movies = resposta.data.results;
+                
+                const randomMovie = movies[Math.floor(Math.random() * movies.length)];
+                setHeroMovie(randomMovie);
+                
+            } catch (err) {
+                console.error("Erro ao buscar filme para o Hero:", err);
+            } finally {
+                setLoading(false);
+            }
+        };
 
     fetchHeroMovie();
   }, []);
