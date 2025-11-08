@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Api } from '../../services/Api';
+import { DetailsModal } from '../DetailsModal';
 import { Moviecard } from '../MovieCard';
 import {
     ListWrapper,
@@ -11,18 +12,17 @@ const TMDB_BEARER_TOKEN = import.meta.env.VITE_TMDB_BEARER_TOKEN;
 
 export function MovieList({ searchTerm = '' }) {
     const [movies, setMovies] = useState([]);
+    const [selectedItem, setSelectedItem] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
     const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
+
 
     useEffect(() => {
         const timerId = setTimeout(() => {
             setDebouncedSearchTerm(searchTerm); 
         }, 500); 
-        return () => {
-            clearTimeout(timerId);
-        };
+        return () => clearTimeout(timerId);
     }, [searchTerm]); 
 
 
@@ -30,7 +30,7 @@ export function MovieList({ searchTerm = '' }) {
         const fetchMovies = async () => {
             setLoading(true); 
             setError(null);   
-            
+
             const config = {
                 headers: {
                     'Authorization': `Bearer ${TMDB_BEARER_TOKEN}`,
@@ -61,22 +61,35 @@ export function MovieList({ searchTerm = '' }) {
         fetchMovies();
     }, [debouncedSearchTerm]);
 
-    if (loading) {
-        return <LoadingMessage>Carregando...</LoadingMessage>;
-    }
 
-    if (error) {
-        return <ErrorMessage>Erro: {error}</ErrorMessage>;
-    }
-    if (!loading && movies.length === 0) {
-        return <ErrorMessage>Nenhum filme encontrado.</ErrorMessage>;
-    }
+    const handleCardClick = (movie) => {
+        setSelectedItem(movie);
+    };
+
+    const handleCloseModal = () => {
+        setSelectedItem(null);
+    };
+
+
+    if (loading) return <LoadingMessage>Carregando...</LoadingMessage>;
+    if (error) return <ErrorMessage>Erro: {error}</ErrorMessage>;
+    if (!loading && movies.length === 0) return <ErrorMessage>Nenhum filme encontrado.</ErrorMessage>;
 
     return (
-        <ListWrapper>
-            {movies.map((movie) => (
-                <Moviecard key={movie.id} movie={movie} />
-            ))}
-        </ListWrapper>
+        <>
+            <ListWrapper>
+                {movies.map((movie) => (
+                    <Moviecard
+                        key={movie.id}
+                        movie={movie}
+                        onClick={() => handleCardClick(movie)}
+                    />
+                ))}
+            </ListWrapper>
+
+            {selectedItem && (
+                <DetailsModal item={selectedItem} onClose={handleCloseModal} />
+            )}
+        </>
     );
 }
