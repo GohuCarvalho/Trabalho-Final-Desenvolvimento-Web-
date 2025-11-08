@@ -37,7 +37,7 @@ export function Home({ searchTerm }) {
                 console.error("Erro ao buscar filme para o Hero:", err);
             } finally {
                 setLoading(false);
-            }
+ }
         };
 
         fetchHeroMovie();
