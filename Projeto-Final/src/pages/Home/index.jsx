@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Api } from '../../services/Api'; 
+import { Hero } from '../../components/Hero'; 
+import { MovieRow } from '../../components/MovieRow'; 
+import { DetailsModal } from '../../components/DetailsModal';
 import { MovieRow } from '../../components/MovieRow';
 import { Api } from '../../services/Api';
 import {
@@ -21,6 +25,8 @@ const requests = {
 
 export function Home({ searchTerm }) {
     const [heroMovie, setHeroMovie] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [selectedItem, setSelectedItem] = useState(null);
     const [loadingHero, setLoadingHero] = useState(true);
     const [errorHero, setErrorHero] = useState(null);
 
@@ -55,6 +61,35 @@ export function Home({ searchTerm }) {
     }, []);
 
     return (
+
+        <div>
+            {heroMovie && <Hero movie={heroMovie} />}
+
+            <MovieRow 
+             title="Populares" 
+            fetchUrl={tmdbRequests.fetchPopular} 
+            onSelectItem={setSelectedItem}
+            />
+
+            <MovieRow 
+            title="Mais Votados" 
+            fetchUrl={tmdbRequests.fetchTopRated} 
+            onSelectItem={setSelectedItem}
+            />
+
+            <MovieRow 
+            title="Em Alta" 
+            fetchUrl={tmdbRequests.fetchTrending} 
+            onSelectItem={setSelectedItem}
+            /> 
+
+            <DetailsModal 
+            item={selectedItem} 
+            onClose={() => setSelectedItem(null)} 
+            />    
+        </div>
+);
+
         <>
             {loadingHero && <LoadingMessage>Carregando...</LoadingMessage>}
             {errorHero && <ErrorMessage>[ERRO HERO]: {errorHero}</ErrorMessage>}

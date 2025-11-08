@@ -9,6 +9,8 @@ import {
 
 const TMDB_IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
+export function Moviecard({ movie, onClick }) {
+
 export function Moviecard({ movie }) {
     const imageUrl = movie.poster_path
         ? `${TMDB_IMAGE_BASE_URL}${movie.poster_path}`
@@ -21,7 +23,7 @@ export function Moviecard({ movie }) {
 
 
     return (
-        <CardWrapper>
+        <CardWrapper onClick={onClick}>
             <Poster
                 src={imageUrl}
                 alt={`Capa do Filme ${movie.title}`}
