@@ -62,6 +62,13 @@ export const MaratonaContentLeft  = styled.div`
     width: 45%;
 `;
 
+export const GridWatchlist  = styled.div`
+    display: grid;
+    width: 45%;
+    color: #fff;
+
+`;
+
 
 
     // border: 0.03rem solid #929292ff;

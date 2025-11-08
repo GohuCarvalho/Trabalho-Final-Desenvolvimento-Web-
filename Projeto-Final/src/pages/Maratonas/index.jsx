@@ -6,11 +6,11 @@ export function Maratonas () {
     return (
         <>
         <MainContent>
-            <MaratonaTitleContainer> {/* col */}
+            <MaratonaTitleContainer>
                 <MaratonaTitle>Maratonas</MaratonaTitle>
             </MaratonaTitleContainer>
             
-            <MaratonaContentContainer>  {/* row */}
+            <MaratonaContentContainer>
                 <MaratonaContentRight>
                     <MaratonaH2>Topa uma maratona?</MaratonaH2>
                     <MaratonaParagraph>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sagittis convallis nisi, quis bibendum quam interdum in. Nam ullamcorper aliquet nisi, sed rhoncus libero varius et. Curabitur imperdiet consectetur ipsum vitae ornare. Praesent molestie metus elit. Pellentesque consequat id nulla ut suscipit.</MaratonaParagraph>
@@ -18,7 +18,7 @@ export function Maratonas () {
                 </MaratonaContentRight>
 
                 <MaratonaContentLeft>
-                <p style={{color: "#fff"}}>lalalalala</p>
+                <GridWatchlist>lalalalala</GridWatchlist>
                     
                 </MaratonaContentLeft>
             </MaratonaContentContainer>
