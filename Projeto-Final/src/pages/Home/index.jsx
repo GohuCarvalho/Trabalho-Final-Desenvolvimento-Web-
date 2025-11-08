@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Api } from '../../services/Api'; 
 import { Hero } from '../../components/Hero'; 
 import { MovieRow } from '../../components/MovieRow'; 
+import { DetailsModal } from '../../components/DetailsModal';
 
 const TMDB_BEARER_TOKEN = import.meta.env.VITE_TMDB_BEARER_TOKEN;
 
@@ -14,6 +15,7 @@ const tmdbRequests = {
 export function Home() {
     const [heroMovie, setHeroMovie] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [selectedItem, setSelectedItem] = useState(null);
 
     useEffect(() => {
         const fetchHeroMovie = async () => {
@@ -45,24 +47,33 @@ export function Home() {
     }
 
     return (
+
         <div>
             {heroMovie && <Hero movie={heroMovie} />}
 
             <MovieRow 
-                title="Populares" 
-                fetchUrl={tmdbRequests.fetchPopular} 
+             title="Populares" 
+            fetchUrl={tmdbRequests.fetchPopular} 
+            onSelectItem={setSelectedItem}
             />
 
             <MovieRow 
-                title="Mais Votados" 
-                fetchUrl={tmdbRequests.fetchTopRated} 
+            title="Mais Votados" 
+            fetchUrl={tmdbRequests.fetchTopRated} 
+            onSelectItem={setSelectedItem}
             />
 
-             <MovieRow 
-                title="Em Alta" 
-                fetchUrl={tmdbRequests.fetchTrending} 
+            <MovieRow 
+            title="Em Alta" 
+            fetchUrl={tmdbRequests.fetchTrending} 
+            onSelectItem={setSelectedItem}
             /> 
-            
+
+            <DetailsModal 
+            item={selectedItem} 
+            onClose={() => setSelectedItem(null)} 
+            />    
         </div>
-    );
+);
+
 }

@@ -5,7 +5,7 @@ import { RowWrapper, RowTitle, CardContainer, LoadingMessage } from './style';
 
 const TMDB_BEARER_TOKEN = import.meta.env.VITE_TMDB_BEARER_TOKEN
 
-export function MovieRow({ title, fetchUrl }) {
+export function MovieRow({ title, fetchUrl, onSelectItem }) {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -48,7 +48,7 @@ export function MovieRow({ title, fetchUrl }) {
             <RowTitle>{title}</RowTitle>
             <CardContainer>
                 {movies.map((movie) => (
-                    <Moviecard key={movie.id} movie={movie} />
+                    <Moviecard key={movie.id} movie={movie} onClick={() => onSelectItem(movie)} />
                 ))}
             </CardContainer>
         </RowWrapper>
