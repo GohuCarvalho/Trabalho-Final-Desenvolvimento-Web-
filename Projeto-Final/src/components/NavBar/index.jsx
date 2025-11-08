@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { LogoImage, NavbarBrandLink, InputProcurar } from './styles';
+import { LogoImage, NavbarBrandLink, InputProcurar } from './style';
 import logoDefault from '../../assets/Logos/popcornTv-logo.svg'; 
 import logoHover from '../../assets/Logos/popcornTv-logo-hovered.svg'; 
 
@@ -53,7 +53,11 @@ const Header = ({ searchTerm, onSearchChange }) => {
                             placeholder="Procure por nome"
                             aria-label="Search"
                             value={searchTerm}
-                            onChange={(e) => onSearchChange(e.target.value)}
+                            onChange={(e) => {
+                                const val = e.target.value;
+                                onSearchChange(val);
+                                console.log('NavBar onChange:', val);
+                            }}
                         />
                         <button
                             className="btn btn-outline-success"
