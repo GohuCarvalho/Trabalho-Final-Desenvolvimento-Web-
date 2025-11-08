@@ -16,15 +16,18 @@ export const CardContainer = styled.div`
 	flex-wrap: wrap;
 	gap: 20px;
 	padding: 0 20px;
-	justify-content: center;
-	align-items: center;
+	justify-content: flex-start;
+	align-items: flex-start;
 	width: 100%;
+	min-width: 100%;
 	box-sizing: border-box;
 	min-height: 300px;
+	margin: 0 auto;
 
 	> * {
-		flex: 0 0 auto;
-		width: 200px;
+		flex: 0 1 200px;
+		min-width: 200px;
+		margin-bottom: 10px;
 	}
 `;
 
