@@ -98,22 +98,3 @@ export const Actions = styled.div`
 `;
 
 
-export const ActionButton = styled(Link)`
-  background: #2563eb;
-  color: #fff;
-  padding: 10px 16px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background 0.2s;
-
-  &:hover {
-    background: #1e40af;
-  }
-
-  @media (max-width: 480px) {
-    text-align: center;
-    width: 100%;
-  }
-`;
-

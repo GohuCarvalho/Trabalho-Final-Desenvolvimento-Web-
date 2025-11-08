@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { Api } from '../../services/Api'; 
-import { Hero } from '../../components/Hero'; 
-import { MovieRow } from '../../components/MovieRow'; 
-import { DetailsModal } from '../../components/DetailsModal';
-import { MainContent } from './style';
+import React, { useState, useEffect } from "react";
+import { Api } from "../../services/Api";
+import { Hero } from "../../components/Hero";
+import { MovieRow } from "../../components/MovieRow";
+import { DetailsModal } from "../../components/DetailsModal";
+import { MainContent } from "./style";
 
 const TMDB_BEARER_TOKEN = import.meta.env.VITE_TMDB_BEARER_TOKEN;
 
 const tmdbRequests = {
-  fetchPopular: '/movie/popular?language=pt-BR',
-  fetchTopRated: '/movie/top_rated?language=pt-BR',
-  fetchTrending: '/trending/movie/week?language=pt-BR',
+  fetchPopular: "/movie/popular?language=pt-BR",
+  fetchTopRated: "/movie/top_rated?language=pt-BR",
+  fetchTrending: "/trending/movie/week?language=pt-BR",
 };
 
 export function Home({ searchTerm }) {
-    const [heroMovie, setHeroMovie] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [selectedItem, setSelectedItem] = useState(null);
+  const [heroMovie, setHeroMovie] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [selectedItem, setSelectedItem] = useState(null);
 
     useEffect(() => {
         const fetchHeroMovie = async () => {
@@ -37,45 +37,46 @@ export function Home({ searchTerm }) {
                 console.error("Erro ao buscar filme para o Hero:", err);
             } finally {
                 setLoading(false);
- }
+            }
         };
 
-        fetchHeroMovie();
-    }, []); 
+    fetchHeroMovie();
+  }, []);
 
-    if (loading) {
-        return <div>Carregando...</div>; 
-    }
+  if (loading) {
+    return <div>Carregando...</div>;
+  }
 
-    return (
-        <>
-            {heroMovie && <Hero movie={heroMovie} />}
-            <MainContent>
-                <MovieRow 
-                title="Original PopCorn TV" 
-                fetchUrl={tmdbRequests.fetchPopular} 
-                onSelectItem={setSelectedItem}
-                searchTerm={searchTerm}
-                />
+  return (
+    <>
+      {heroMovie && <Hero movie={heroMovie} />}
+      <MainContent>
+        <MovieRow
+          title="Original PopCorn TV"
+          fetchUrl={tmdbRequests.fetchPopular}
+          onSelectItem={setSelectedItem}
+          searchTerm={searchTerm}
+        />
 
-                <MovieRow 
-                title="Mais Votados" 
-                fetchUrl={tmdbRequests.fetchTopRated} 
-                onSelectItem={setSelectedItem}
-                searchTerm={searchTerm}
-                />
+        <MovieRow
+          title="Mais Votados"
+          fetchUrl={tmdbRequests.fetchTopRated}
+          onSelectItem={setSelectedItem}
+          searchTerm={searchTerm}
+        />
 
-                <MovieRow 
-                title="Em Alta" 
-                fetchUrl={tmdbRequests.fetchTrending} 
-                onSelectItem={setSelectedItem}
-                searchTerm={searchTerm}
-                /> 
+        <MovieRow
+          title="Em Alta"
+          fetchUrl={tmdbRequests.fetchTrending}
+          onSelectItem={setSelectedItem}
+          searchTerm={searchTerm}
+        />
 
-                <DetailsModal 
-                item={selectedItem} 
-                onClose={() => setSelectedItem(null)} 
-                />
-            </MainContent>
-        </>
-    );}
+        <DetailsModal
+          item={selectedItem}
+          onClose={() => setSelectedItem(null)}
+        />
+      </MainContent>
+    </>
+  );
+}
