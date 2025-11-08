@@ -5,8 +5,7 @@ import { RowWrapper, RowTitle, CardContainer, LoadingMessage } from './style';
 
 const TMDB_BEARER_TOKEN = import.meta.env.VITE_TMDB_BEARER_TOKEN;
 
-export function MovieRow({ title, fetchUrl, onSelectItem }) {
-export function MovieRow({ title, fetchUrl, searchTerm }) {
+export function MovieRow({ title, fetchUrl, onSelectItem, searchTerm }) {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null); 
@@ -44,7 +43,7 @@ export function MovieRow({ title, fetchUrl, searchTerm }) {
         };
 
         fetchMovies();
-    }, [fetchUrl, title]);
+    }, [fetchUrl, title]); 
 
     if (loading) {
         return (
@@ -73,16 +72,19 @@ export function MovieRow({ title, fetchUrl, searchTerm }) {
         <RowWrapper>
             <RowTitle>{title}</RowTitle>
             <CardContainer>
-                {movies.map((movie) => (
-                    <Moviecard key={movie.id} movie={movie} onClick={() => onSelectItem(movie)} />
-                ))}
                 {filteredMovies.length > 0 ? (
                     filteredMovies.map((movie) => (
-                        <Moviecard key={movie.id} movie={movie} />
+                        <Moviecard 
+                            key={movie.id} 
+                            movie={movie} 
+                            onClick={() => onSelectItem(movie)} 
+                        />
                     ))
                 ) : (
                     <LoadingMessage>
-                        {safeSearchTerm ? `Nenhum resultado para "${safeSearchTerm}"` : `Não há filmes nesta categoria.`}
+                        {safeSearchTerm 
+                            ? `Nenhum resultado para "${safeSearchTerm}"` 
+                            : `Não há filmes nesta categoria.`}
                     </LoadingMessage>
                 )}
             </CardContainer>

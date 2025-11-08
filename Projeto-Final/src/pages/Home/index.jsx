@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Api } from '../../services/Api'; 
-import { Hero } from '../../components/Hero'; 
 import { MovieRow } from '../../components/MovieRow'; 
-import { DetailsModal } from '../../components/DetailsModal';
-import { MovieRow } from '../../components/MovieRow';
-import { Api } from '../../services/Api';
+// Removidas importações não utilizadas: Hero, DetailsModal
 import {
     HeroWrapper,
     HeroTitle,
@@ -25,8 +22,6 @@ const requests = {
 
 export function Home({ searchTerm }) {
     const [heroMovie, setHeroMovie] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [selectedItem, setSelectedItem] = useState(null);
     const [loadingHero, setLoadingHero] = useState(true);
     const [errorHero, setErrorHero] = useState(null);
 
@@ -60,46 +55,19 @@ export function Home({ searchTerm }) {
         fetchHeroMovie();
     }, []);
 
+    // Este é o bloco de 'return' que estava comentado, mas é o correto
+    // pois usa o estado (loadingHero, errorHero) e as props (searchTerm)
     return (
-
-        <div>
-            {heroMovie && <Hero movie={heroMovie} />}
-
-            <MovieRow 
-             title="Populares" 
-            fetchUrl={tmdbRequests.fetchPopular} 
-            onSelectItem={setSelectedItem}
-            />
-
-            <MovieRow 
-            title="Mais Votados" 
-            fetchUrl={tmdbRequests.fetchTopRated} 
-            onSelectItem={setSelectedItem}
-            />
-
-            <MovieRow 
-            title="Em Alta" 
-            fetchUrl={tmdbRequests.fetchTrending} 
-            onSelectItem={setSelectedItem}
-            /> 
-
-            <DetailsModal 
-            item={selectedItem} 
-            onClose={() => setSelectedItem(null)} 
-            />    
-        </div>
-);
-
         <>
             {loadingHero && <LoadingMessage>Carregando...</LoadingMessage>}
             {errorHero && <ErrorMessage>[ERRO HERO]: {errorHero}</ErrorMessage>}
             
             {heroMovie && (
                 <HeroWrapper 
-                    $backgroundImage={`${TMDB_IMAGE_BASE_URL}${heroMovie.backdrop_path}`}
+                    // Garante que heroMovie.backdrop_path exista antes de construir a URL
+                    $backgroundImage={heroMovie.backdrop_path ? `${TMDB_IMAGE_BASE_URL}${heroMovie.backdrop_path}` : ''}
                 >
-                
-                    <HeroTitle>{heroMovie.title}</HeroTitle>
+                    <HeroTitle>{heroMovie.title || heroMovie.name}</HeroTitle>
                     <HeroDescription>{heroMovie.overview}</HeroDescription>
                 </HeroWrapper>
             )}
