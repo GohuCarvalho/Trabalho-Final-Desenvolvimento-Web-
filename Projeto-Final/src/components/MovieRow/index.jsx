@@ -2,92 +2,57 @@ import React, { useState, useEffect } from 'react';
 import { Api } from '../../services/Api';
 import { Moviecard } from '../MovieCard';
 import { RowWrapper, RowTitle, CardContainer, LoadingMessage } from './style';
-
 const TMDB_BEARER_TOKEN = import.meta.env.VITE_TMDB_BEARER_TOKEN;
 
-export function MovieRow({ title, fetchUrl, onSelectItem, searchTerm }) {
-    const [movies, setMovies] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null); 
+export function MovieRow({ title, fetchUrl, onSelectItem, searchTerm = '' }) {
+	const [movies, setMovies] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
 
-    useEffect(() => {
-        setLoading(true);
-        setError(null); 
+	useEffect(() => {
+		const fetchMovies = async () => {
+			const config = {
+				headers: {
+					Authorization: `Bearer ${TMDB_BEARER_TOKEN}`,
+					accept: 'application/json',
+				},
+			};
 
-        if (!TMDB_BEARER_TOKEN) {
-            setError("Token (VITE_TMDB_BEARER_TOKEN) não encontrado.");
-            setLoading(false);
-            return;
-        }
+			try {
+				const resposta = await Api.get(fetchUrl, config);
+				setMovies(resposta.data.results || []);
+			} catch (err) {
+				console.error('Erro ao buscar filmes (MovieRow):', err);
+				setError(err.message);
+			} finally {
+				setLoading(false);
+			}
+		};
 
-        const fetchMovies = async () => {
-            const config = {
-                headers: {
-                    'Authorization': `Bearer ${TMDB_BEARER_TOKEN}`,
-                    'accept': 'application/json'
-                }
-            };
-            try {
-                const resposta = await Api.get(fetchUrl, config);
-                const normalizedMovies = resposta.data.results.map(movie => ({
-                    ...movie,
-                    title: movie.title || movie.name || movie.original_name,
-                }));
-                setMovies(normalizedMovies);
-            } catch (err) {
-                console.error(`[${title}] ERRO ao buscar filmes:`, err); 
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        };
+		fetchMovies();
+	}, [fetchUrl]);
 
-        fetchMovies();
-    }, [fetchUrl, title]); 
+	if (loading) return <LoadingMessage>Carregando...</LoadingMessage>;
+	if (error) return <LoadingMessage>Erro: {error}</LoadingMessage>;
 
-    if (loading) {
-        return (
-            <RowWrapper>
-                <RowTitle>{title}</RowTitle>
-                <LoadingMessage>Carregando...</LoadingMessage>
-            </RowWrapper>
-        );
-    }
+	const normalize = (s = '') =>
+		s.toString().toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
 
-    if (error) {
-        return (
-            <RowWrapper>
-                <RowTitle>{title}</RowTitle>
-                <LoadingMessage style={{ color: 'red' }}>Erro: {error}</LoadingMessage>
-            </RowWrapper>
-        );
-    }
+	const search = normalize(searchTerm);
 
-    const safeSearchTerm = searchTerm || ""; 
-    const filteredMovies = movies.filter(movie =>
-        movie.title && movie.title.toLowerCase().includes(safeSearchTerm.toLowerCase())
-    );
+	const filtered = movies.filter((m) => {
+		const titleStr = normalize(m.title || m.name || m.original_title || '');
+		return search === '' || titleStr.includes(search);
+	});
 
-    return (
-        <RowWrapper>
-            <RowTitle>{title}</RowTitle>
-            <CardContainer>
-                {filteredMovies.length > 0 ? (
-                    filteredMovies.map((movie) => (
-                        <Moviecard 
-                            key={movie.id} 
-                            movie={movie} 
-                            onClick={() => onSelectItem(movie)} 
-                        />
-                    ))
-                ) : (
-                    <LoadingMessage>
-                        {safeSearchTerm 
-                            ? `Nenhum resultado para "${safeSearchTerm}"` 
-                            : `Não há filmes nesta categoria.`}
-                    </LoadingMessage>
-                )}
-            </CardContainer>
-        </RowWrapper>
-    );
+	return (
+		<RowWrapper>
+			<RowTitle>{title}</RowTitle>
+			<CardContainer>
+				{filtered.map((movie) => (
+					<Moviecard key={movie.id} movie={movie} onClick={() => onSelectItem && onSelectItem(movie)} />
+				))}
+			</CardContainer>
+		</RowWrapper>
+	);
 }

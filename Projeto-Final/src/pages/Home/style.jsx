@@ -41,7 +41,7 @@ export const HeroWrapper = styled.div`
 `;
 
 export const HeroTitle = styled.h2`
-    font-size: 3rem;
+    font-size: 10rem;
     margin: 0 0 10px 0;
 `;
 

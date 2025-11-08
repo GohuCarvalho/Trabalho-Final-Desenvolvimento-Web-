@@ -6,7 +6,7 @@ export const MainContent = styled.main`
     padding: 20px;
 
     h1 {
-        color: #ffffff;
+        color: #FFFF;
         font-size: 2.5rem;
         text-align: center;
         margin-bottom: 20px;
