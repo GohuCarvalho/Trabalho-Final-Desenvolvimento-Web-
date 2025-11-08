@@ -3,6 +3,7 @@ import { Api } from '../../services/Api';
 import { Hero } from '../../components/Hero'; 
 import { MovieRow } from '../../components/MovieRow'; 
 import { DetailsModal } from '../../components/DetailsModal';
+import { MainContent } from './style';
 
 const TMDB_BEARER_TOKEN = import.meta.env.VITE_TMDB_BEARER_TOKEN;
 
@@ -46,37 +47,35 @@ export function Home({ searchTerm }) {
         return <div>Carregando...</div>; 
     }
 
-    return (
+    return (
+        <>
+            {heroMovie && <Hero movie={heroMovie} />}
+            <MainContent>
+                <MovieRow 
+                title="Original PopCorn TV" 
+                fetchUrl={tmdbRequests.fetchPopular} 
+                onSelectItem={setSelectedItem}
+                searchTerm={searchTerm}
+                />
 
-        <div>
-            {heroMovie && <Hero movie={heroMovie} />}
+                <MovieRow 
+                title="Mais Votados" 
+                fetchUrl={tmdbRequests.fetchTopRated} 
+                onSelectItem={setSelectedItem}
+                searchTerm={searchTerm}
+                />
 
-            <MovieRow 
-            title="Original PopCorn TV" 
-            fetchUrl={tmdbRequests.fetchPopular} 
-            onSelectItem={setSelectedItem}
-            searchTerm={searchTerm}
-            />
+                <MovieRow 
+                title="Em Alta" 
+                fetchUrl={tmdbRequests.fetchTrending} 
+                onSelectItem={setSelectedItem}
+                searchTerm={searchTerm}
+                /> 
 
-            <MovieRow 
-            title="Mais Votados" 
-            fetchUrl={tmdbRequests.fetchTopRated} 
-            onSelectItem={setSelectedItem}
-            searchTerm={searchTerm}
-            />
-
-            <MovieRow 
-            title="Em Alta" 
-            fetchUrl={tmdbRequests.fetchTrending} 
-            onSelectItem={setSelectedItem}
-            searchTerm={searchTerm}
-            /> 
-
-            <DetailsModal 
-            item={selectedItem} 
-            onClose={() => setSelectedItem(null)} 
-            />    
-        </div>
-);
-
-}
+                <DetailsModal 
+                item={selectedItem} 
+                onClose={() => setSelectedItem(null)} 
+                />
+            </MainContent>
+        </>
+    );}

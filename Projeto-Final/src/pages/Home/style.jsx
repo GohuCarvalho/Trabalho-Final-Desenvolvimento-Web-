@@ -52,8 +52,12 @@ export const HeroDescription = styled.p`
 `;
 
 export const MainContent = styled.main`
-  
-    padding-top: 20px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-x: hidden;
 `;
 
 export const LoadingMessage = styled.p`
