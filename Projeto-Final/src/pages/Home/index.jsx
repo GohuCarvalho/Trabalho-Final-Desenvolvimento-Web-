@@ -7,9 +7,9 @@ import { DetailsModal } from '../../components/DetailsModal';
 const TMDB_BEARER_TOKEN = import.meta.env.VITE_TMDB_BEARER_TOKEN;
 
 const tmdbRequests = {
-  fetchPopular: '/movie/popular',
-  fetchTopRated: '/movie/top_rated',
-  fetchTrending: '/trending/movie/week',
+  fetchPopular: '/movie/popular?language=pt-BR',
+  fetchTopRated: '/movie/top_rated?language=pt-BR',
+  fetchTrending: '/trending/movie/week?language=pt-BR',
 };
 
 export function Home() {
