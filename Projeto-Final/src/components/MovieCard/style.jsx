@@ -4,7 +4,8 @@ export const CardWrapper = styled.div`
     background-color: #2b2b2b;
     border-radius: 8px;
     overflow: hidden;
-    margin: 10px;
+    align-items: center;
+    margin: 0;
     width: 250px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease-in-out;
