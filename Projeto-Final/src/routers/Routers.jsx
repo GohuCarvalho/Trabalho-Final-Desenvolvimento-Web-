@@ -5,6 +5,7 @@ import { Home } from './../pages/Home';
 import Header from '../components/NavBar';
 import { Maratonas } from '../pages/Maratonas/index';
 import { FilmesPopulares } from '../pages/FilmesPopulares';
+import { NotFound } from '../pages/PageNotFound';
 
 export const Routers = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -27,6 +28,8 @@ export const Routers = () => {
                 />
                     <Route path="/filmes" element={<FilmesPopulares searchTerm={searchTerm} />} />
                 <Route path="/maratonas" element={<Maratonas/>} />
+
+                 <Route path='*' element={<NotFound />} />
             </Routes>
         </BrowserRouter>
     );
