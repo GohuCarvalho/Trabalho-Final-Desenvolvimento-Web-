@@ -1,42 +1,60 @@
 import styled from 'styled-components';
 
 export const RowWrapper = styled.div`
-    margin-bottom: 30px;
-    width: 100%;
-    overflow: hidden; /* Garante que nada vaze */
+	margin-bottom: 30px;
 `;
 
 export const RowTitle = styled.h2`
-    color: white;
-    font-size: 1.8rem;
-    margin: 0 0 15px 40px; /* Alinha com o padding do Hero */
+	color: #f4e10b;
+	font-size: 2.5rem;
+	text-align: center;
+	margin-bottom: 25px;
+	width: 100%;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-shadow: 
+		0 1px 0 #ccc,
+		0 2px 0 #c9c9c9,
+		0 3px 0 #bbb,
+		0 4px 0 #b9b9b9,
+		0 5px 0 #aaa,
+		0 6px 1px rgba(0,0,0,.1),
+		0 0 5px rgba(0,0,0,.1),
+		0 1px 3px rgba(0,0,0,.3),
+		0 3px 5px rgba(0,0,0,.2),
+		0 5px 10px rgba(0,0,0,.25),
+		0 10px 10px rgba(0,0,0,.2),
+		0 20px 20px rgba(0,0,0,.15);
+	transition: all 0.3s ease;
+	
+	&:hover {
+		transform: scale(1.05);
+	}
 `;
 
 export const CardContainer = styled.div`
-    display: flex;
-    overflow-y: hidden;
-    overflow-x: scroll; /* AQUI ESTÁ A MÁGICA: scroll horizontal */
-    padding: 10px 0 10px 40px; /* Padding inicial à esquerda */
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	padding: 0 20px;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	min-width: 100%;
+	box-sizing: border-box;
+	min-height: 300px;
+	margin: 0 auto;
 
-    /* Esconde a barra de scroll (funciona na maioria dos navegadores) */
-    &::-webkit-scrollbar {
-        display: none; 
-    }
-    -ms-overflow-style: none;  /* IE e Edge */
-    scrollbar-width: none;  /* Firefox */
-
-    /* Aqui estamos mirando o CardWrapper (que é o 'div' 
-      exportado pelo Moviecard) para garantir que ele 
-      não encolha e tenha a margem correta.
-    */
-    > div {
-        flex-shrink: 0; /* Impede que os cards encolham */
-        margin: 0 10px 0 0; /* Ajusta a margem SÓ na direita */
-    }
+	> * {
+		flex: 0 1 250px;
+		min-width: 250px;
+		margin: 0;
+	}
 `;
 
-export const LoadingMessage = styled.div`
-    color: #888;
-    font-size: 1rem;
-    padding: 20px 40px;
+export const LoadingMessage = styled.p`
+	color: #fff;
+	text-align: center;
+	width: 100%;
+	margin: 0;
 `;

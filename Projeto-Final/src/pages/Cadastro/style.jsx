@@ -29,7 +29,7 @@ export const Content = styled.div`
   border-radius: 12px;
   box-shadow:
   0 8px 24px rgba(0, 0, 0, 0.4), 
-    0 0 40px rgba(78, 48, 203, 0.6);   
+    0 0 40px rgba(78, 48, 203, 0.6);  
   display: flex;
   flex-direction: column;
   align-items: center;
