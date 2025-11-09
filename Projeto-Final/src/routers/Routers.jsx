@@ -1,25 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-
 import Login from '../pages/Login';
 import LoadingPage from '../pages/LoadingPage';
 import { Home } from './../pages/Home';
-
 import { Maratonas } from '../pages/Maratonas/index';
 import { FilmesPopulares } from '../pages/FilmesPopulares';
 import { NotFound } from '../pages/PageNotFound';
+import Cadastro from '../pages/Cadastro'; 
 
-export const Routers = () => {
-    const [searchTerm, setSearchTerm] = useState('');
-    const handleSearchChange = (novoTermo) => {
-        console.log('Routers handleSearchChange:', novoTermo);
-        setSearchTerm(novoTermo);
-    };
-
+export const Routers = ({ searchTerm = '' }) => {
     return (
         <>
             <Routes>
-                <Route path="/" element={<Login />} />
+                <Route path="/" element={<Cadastro />} />
+                <Route path="/login" element={<Login />} />
+
                 <Route path="/loading" element={<LoadingPage />} />
                 <Route
                     path='/home'

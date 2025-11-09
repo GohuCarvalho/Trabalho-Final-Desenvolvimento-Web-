@@ -35,6 +35,7 @@ const popcornScatter = keyframes`
 
 export const Container = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
@@ -42,6 +43,25 @@ export const Container = styled.div`
   background-color: #000;
   overflow: hidden; 
   position: relative; 
+`;
+
+export const WelcomeMessage = styled.h1`
+  color: #FFFFFF;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  opacity: 0;
+  animation: ${bucketZoom} 1s ease-out forwards;
+  animation-delay: 0.5s;
+  
+  span {
+    color: #FFD700;
+    display: block;
+    font-size: 3rem;
+    margin-top: 0.5rem;
+  }
 `;
 
 export const LogoContainer = styled.div`

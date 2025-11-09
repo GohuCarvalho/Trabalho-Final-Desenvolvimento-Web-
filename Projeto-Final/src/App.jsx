@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import './App.css';
@@ -11,7 +11,14 @@ import { Routers } from './routers/Routers';
 
 function App() {
   const location = useLocation();
-  const showHeader = location.pathname !== '/' && location.pathname !== '/loading';
+  const noHeaderPaths = ['/', '/login', '/loading'];
+  const showHeader = !noHeaderPaths.includes(location.pathname);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearchChange = (novoTermo) => {
+    console.log('App handleSearchChange:', novoTermo);
+    setSearchTerm(novoTermo);
+  };
 
   return (
     <ApiProvider>
@@ -19,9 +26,9 @@ function App() {
       <WatchListProvider>
         <MainBody>
 
-          {showHeader && <Header />}
+          {showHeader && <Header searchTerm={searchTerm} onSearchChange={handleSearchChange} />}
 
-          <Routers />
+          <Routers searchTerm={searchTerm} />
 
         </MainBody>
       </WatchListProvider>

@@ -1,13 +1,19 @@
 import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Container, LogoContainer, PopcornBucket, AnimatedPopcorn } from './style'; 
+import { Container, LogoContainer, PopcornBucket, AnimatedPopcorn, WelcomeMessage } from './style'; 
+import { useAuth } from '../../hooks/UserContext';
 import logoPopcornBucket from '../../assets/Logos/popcornTv-logo-hovered.svg'; 
 import singlePopcorn from '../../assets/Logos/LogoItems/POP.png'; 
 import popcornSound from '../../assets/audio/popcorn.mp3'; 
 
 export default function LoadingPage() {
   const navigate = useNavigate();
-  const audioRef = useRef(null); 
+  const audioRef = useRef(null);
+  const { user } = useAuth();
+  
+  useEffect(() => {
+    console.log('LoadingPage - Dados do usuário:', user);
+  }, [user]);
 
   useEffect(() => {   
     if (audioRef.current) {
@@ -31,7 +37,12 @@ export default function LoadingPage() {
 
   return (
     <Container>      
-      <audio ref={audioRef} src={popcornSound} loop preload="auto" /> 
+      <audio ref={audioRef} src={popcornSound} loop preload="auto" />
+      
+      <WelcomeMessage>
+        Bem-Vindo
+        <span>{user?.name || user?.nome || 'Visitante'}</span>
+      </WelcomeMessage>
       
       <LogoContainer> 
         <PopcornBucket src={logoPopcornBucket} alt="Balde de Pipoca" />

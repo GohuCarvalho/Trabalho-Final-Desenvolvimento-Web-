@@ -49,7 +49,8 @@ export function Home({ searchTerm }) {
 
   return (
     <>
-      {heroMovie && <Hero movie={heroMovie} />}
+      {/* render Hero even if no movie was loaded so user sees the section and fallback content */}
+      <Hero movie={heroMovie} />
       <MainContent>
         <MovieRow
           title="Original PopCorn TV"
