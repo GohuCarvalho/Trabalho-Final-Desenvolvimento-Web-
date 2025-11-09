@@ -7,7 +7,13 @@ export const Container = styled.div`
     min-height: 100vh;
     margin: 0;
     padding: 0;
-    position: relative;
-    background: linear-gradient(180deg, #362589 0%, #1a0450 50%, #000000 100%);
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(180deg, #362589 0%, #1a0450 20%, #000000 80%);
+    background-attachment: fixed;
     overflow-x: hidden;
+
+     @media (max-width: 820px) {
+    height: fit-content;
+    }
 `
