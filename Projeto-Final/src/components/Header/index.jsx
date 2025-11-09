@@ -1,29 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import { LogoImage, NavbarBrandLink, InputProcurar } from './styles';
-import logoDefault from '../../assets/Logos/popcornTv-logo.svg';
-import logoHover from '../../assets/Logos/popcornTv-logo-hovered.svg';
 
-const Header = () => {
+const Header = ({ searchTerm = '', onSearchChange = () => {} }) => {
 
-    const [isHovered, setIsHovered] = useState(false);
-
-    const handleMouseEnter = () => setIsHovered(true);
-    const handleMouseLeave = () => setIsHovered(false);
-
-    const logoSrc = isHovered ? logoHover : logoDefault;
+    const handleChange = (e) => {
+        const val = e.target.value;
+        onSearchChange(val);
+        console.log('Header onChange:', val);
+    };
 
     return (
-
         <nav
             className="navbar navbar-expand-lg bg-body-tertiary w-100 rounded-pill p-1 m-4 opacity-85">
             <div className="container">
                 <NavbarBrandLink
                     href="/home"
                     aria-label="Logo-PopcornTv"
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
                 >
-                    <LogoImage src={logoSrc} />
+                    
+                    <LogoImage />
                 </NavbarBrandLink>
 
                 <button
@@ -46,12 +41,14 @@ const Header = () => {
                             <a className="nav-link" href="/filmes">Filmes Populares</a>
                         </li>
                     </ul>
-                    <form className="d-flex" role="search">
+                    <form className="d-flex" role="search" onSubmit={(e) => e.preventDefault()}>
                         <InputProcurar
                             className="form-control me-2 focus-ring"
                             type="search"
                             placeholder="Procure por nome"
-                            aria-label="Search" />
+                            aria-label="Search"
+                            value={searchTerm}
+                            onChange={handleChange} />
                         <button
                             className="btn btn-outline-success"
                             type="submit"

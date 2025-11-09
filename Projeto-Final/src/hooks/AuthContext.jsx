@@ -17,5 +17,3 @@ export const useApi = () =>{
 
     return contexto;
 }
-
-// talvez teremos que fazer um Error aqui... -> joão
