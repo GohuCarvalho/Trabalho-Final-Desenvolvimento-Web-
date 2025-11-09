@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const InputContainer = styled.div`
-    height: 100%;
+    height: fit-content;
+    minHeight: 100vh;
     width: 90%;
-    background-color: #262525ff;
+    background-color: transparent;
 `;
