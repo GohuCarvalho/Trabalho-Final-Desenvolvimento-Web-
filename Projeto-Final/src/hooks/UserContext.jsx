@@ -25,7 +25,7 @@ export const UserProvider = ({ children }) => {
             const response = await fetch(`${MOCKAPI_URL}/usuarios?email=${email}`);
             
             if (!response.ok) {
-                throw new Error("Erro ao conectar com o servidor de usuários.");
+                throw new Error("Email ou senha incorretos.");
             }
 
             const usersFound = await response.json();
