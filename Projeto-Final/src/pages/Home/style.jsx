@@ -7,6 +7,7 @@ export const MainContent = styled.main`
     padding: 20px;
     box-sizing: border-box;
     overflow-x: hidden;
+    font-family: "Bungee", sans-serif;
 `;
 
 export const LoadingMessage = styled.p`

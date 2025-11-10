@@ -4,8 +4,8 @@ import logoHover from '../../assets/Logos/popcornTv-logo-hovered.svg';
 
 export const LogoImage = styled.span`
     display: inline-block;
-    width: 5rem;
-    height: 3rem;
+    width: 8rem;
+    height: 7rem;
 
     background-image: url(${logoDefault});
     background-size: contain;
