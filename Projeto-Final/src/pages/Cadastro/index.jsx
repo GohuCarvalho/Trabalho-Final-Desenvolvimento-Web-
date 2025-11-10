@@ -51,6 +51,10 @@ export default function Cadastro() {
       const checkResponse = await fetch(`${MOCKAPI_URL}/usuarios`);
       const allUsers = await checkResponse.json();
 
+      // 2. MUDANÇA: Verificamos no JavaScript se o e-mail existe
+      // Usamos .toLowerCase() para garantir que a verificação não diferencie maiúsculas/minúsculas
+      const checkResponse = await fetch(`${MOCKAPI_URL}/usuarios`);
+      const allUsers = await checkResponse.json();
 
       const userExists = allUsers.find(user => 
         user.email.toLowerCase() === email.toLowerCase()

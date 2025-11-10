@@ -10,6 +10,7 @@ import Cadastro from '../pages/Cadastro';
 import { WatchlistMoviePage } from '../pages/WatchlistMovies';
 import { WatchlistTvPage } from '../pages/WatchlistTv/index';
 import { Perfil } from '../pages/Perfil';
+import { SeriesPopulares } from '../pages/SeriesPopulares';
 
 export const Routers = ({ searchTerm = '' }) => {
     return (
@@ -29,6 +30,11 @@ export const Routers = ({ searchTerm = '' }) => {
                 <Route path="/maratonar-series" element={<WatchlistTvPage />} />
                 <Route path="/perfil" element={<Perfil />} />
                 <Route path='*' element={<NotFound />} />
+                <Route path="/series" element={<SeriesPopulares/>} />
+            </Routes>
+        </>
+    );
+};
             </Routes>
         </>
     );
