@@ -4,6 +4,7 @@ import { MaratonaContentContainer, MaratonaContentRight, MaratonaH2, MaratonaPar
 import CardMaratonas from "../../components/CardMaratonas";
 import { CalculadoraModal } from "../../components/CalculadoraModal"
 import { WatchListContext } from "../../contexts/WatchListContext";
+import { useNavigate } from "react-router-dom";
 
 const TMDB_BEARER_TOKEN = import.meta.env.VITE_TMDB_BEARER_TOKEN;
 const MOCK_API_URL = "https://68dda4dad7b591b4b78d011a.mockapi.io/watchlist/watchlist";
@@ -16,6 +17,7 @@ export function Maratonas() {
     const [error, setError] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalMediaType, setModalMediaType] = useState(null);
+    const navigate = useNavigate();
 
     const calculateTotalRuntime = (items, type) => {
         return items.reduce((total, item) => {
@@ -42,6 +44,9 @@ export function Maratonas() {
         setModalMediaType(null);
     };
 
+    const handleCardClick = (type) => {
+        navigate(`/watchlist${type}`);
+    };
     const totalMovieRuntime = calculateTotalRuntime(movieList, 'movie');
     const totalTvRuntime = calculateTotalRuntime(tvList, 'tv');
 
@@ -65,13 +70,15 @@ return (
 
                 <MaratonaContentLeft>
                     <GridWatchlist>
-                        <CardMaratonas
+                        <CardMaratonas 
+                            onClick={() => handleCardClick("filmes")}
                             categoria="Filmes"
                             quantidade= {movieList.length}
                             tempoTotal= {totalMovieRuntime}
                             filmes={movieList}
                         />
                         <CardMaratonas
+                        
                             categoria="Séries"
                             quantidade= {tvList.length}
                             tempoTotal= {totalTvRuntime}

@@ -8,6 +8,7 @@ import { WatchListProvider } from "./contexts/WatchListContext";
 import MainBody from './components/MainBody/index';
 import Header from './components/Header/index';
 import { Routers } from './routers/Routers';
+import Footer from './components/Footer';
 
 function App() {
   const location = useLocation();
@@ -28,6 +29,7 @@ function App() {
 
               {showHeader && <Header searchTerm={searchTerm} onSearchChange={handleSearchChange} />}
               <Routers searchTerm={searchTerm} />
+              {showHeader && <Footer />}
 
           </MainBody>
         </WatchListProvider>
