@@ -1,28 +1,35 @@
-import { Route, Routes, BrowserRouter } from 'react-router-dom'
-import { ApiProvider } from '../hooks/AuthContext'
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import Login from '../pages/Login';
-
-import { Home } from './../pages/Home/index';
-import Header from '../components/Header';
+import LoadingPage from '../pages/LoadingPage';
+import { Home } from './../pages/Home';
 import { Maratonas } from '../pages/Maratonas/index';
 import { FilmesPopulares } from '../pages/FilmesPopulares';
+import { NotFound } from '../pages/PageNotFound';
+import Cadastro from '../pages/Cadastro'; 
+import { WatchlistMoviePage } from '../pages/WatchlistMovies';
+import { WatchlistTvPage } from '../pages/WatchlistTv/index';
 import { SeriesPopulares } from '../pages/SeriesPopulares';
 
-
-export const Routers = () => {
-
+export const Routers = ({ searchTerm = '' }) => {
     return (
-        <BrowserRouter>
-            <ApiProvider>
-                <Header />
-                <Routes>
-                    <Route path="/" element={<Login />} />
-                    <Route path='/home' element= {<Home />} />
-                    <Route path="/filmes" element={<FilmesPopulares/>} />
-                    <Route path="/series" element={<SeriesPopulares/>} />
-                    <Route path="/maratonas" element={<Maratonas/>} />
-                </Routes>
-            </ApiProvider>
-        </BrowserRouter>
-    )
-}
+        <>
+            <Routes>
+                <Route path="/" element={<Cadastro />} />
+                <Route path="/login" element={<Login />} />
+
+                <Route path="/loading" element={<LoadingPage />} />
+                <Route
+                    path='/home'
+                    element={<Home searchTerm={searchTerm} />}
+                />
+                <Route path="/filmes" element={<FilmesPopulares searchTerm={searchTerm} />} />
+                <Route path="/maratonas" element={<Maratonas />} />
+                <Route path="/maratonar-filmes" element={<WatchlistMoviePage />} />
+                <Route path="/maratonar-series" element={<WatchlistTvPage />} />
+                <Route path='*' element={<NotFound />} />
+                <Route path="/series" element={<SeriesPopulares/>} />
+            </Routes>
+        </>
+    );
+};

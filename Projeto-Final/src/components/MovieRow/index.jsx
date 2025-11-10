@@ -2,55 +2,57 @@ import React, { useState, useEffect } from 'react';
 import { Api } from '../../services/Api';
 import { Moviecard } from '../MovieCard';
 import { RowWrapper, RowTitle, CardContainer, LoadingMessage } from './style';
+const TMDB_BEARER_TOKEN = import.meta.env.VITE_TMDB_BEARER_TOKEN;
 
-const TMDB_BEARER_TOKEN = import.meta.env.VITE_TMDB_BEARER_TOKEN
+export function MovieRow({ title, fetchUrl, onSelectItem, searchTerm = '' }) {
+	const [movies, setMovies] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
 
-export function MovieRow({ title, fetchUrl }) {
-    const [movies, setMovies] = useState([]);
-    const [loading, setLoading] = useState(true);
+	useEffect(() => {
+		const fetchMovies = async () => {
+			const config = {
+				headers: {
+					Authorization: `Bearer ${TMDB_BEARER_TOKEN}`,
+					accept: 'application/json',
+				},
+			};
 
-    useEffect(() => {
-        setLoading(true); 
+			try {
+				const resposta = await Api.get(fetchUrl, config);
+				setMovies(resposta.data.results || []);
+			} catch (err) {
+				console.error('Erro ao buscar filmes (MovieRow):', err);
+				setError(err.message);
+			} finally {
+				setLoading(false);
+			}
+		};
 
-        const fetchMovies = async () => {
-            const config = {
-                headers: {
-                    'Authorization': `Bearer ${TMDB_BEARER_TOKEN}`,
-                    'accept': 'application/json'
-                }
-            };
+		fetchMovies();
+	}, [fetchUrl]);
 
-            try {
-                const resposta = await Api.get(fetchUrl, config);
-                setMovies(resposta.data.results);
-            } catch (err) {
-                console.error(`Erro ao buscar ${title}:`, err);
-            } finally {
-                setLoading(false);
-            }
-        };
+	if (loading) return <LoadingMessage>Carregando...</LoadingMessage>;
+	if (error) return <LoadingMessage>Erro: {error}</LoadingMessage>;
 
-        fetchMovies();
+	const normalize = (s = '') =>
+		s.toString().toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
 
-    }, [fetchUrl, title]); 
+	const search = normalize(searchTerm);
 
-    if (loading) {
-        return (
-            <RowWrapper>
-                <RowTitle>{title}</RowTitle>
-                <LoadingMessage>Carregando...</LoadingMessage>
-            </RowWrapper>
-        );
-    }
+	const filtered = movies.filter((m) => {
+		const titleStr = normalize(m.title || m.name || m.original_title || '');
+		return search === '' || titleStr.includes(search);
+	});
 
-    return (
-        <RowWrapper>
-            <RowTitle>{title}</RowTitle>
-            <CardContainer>
-                {movies.map((movie) => (
-                    <Moviecard key={movie.id} movie={movie} />
-                ))}
-            </CardContainer>
-        </RowWrapper>
-    );
+	return (
+		<RowWrapper>
+			<RowTitle>{title}</RowTitle>
+			<CardContainer>
+				{filtered.map((movie) => (
+					<Moviecard key={movie.id} movie={movie} onClick={() => onSelectItem && onSelectItem(movie)} />
+				))}
+			</CardContainer>
+		</RowWrapper>
+	);
 }

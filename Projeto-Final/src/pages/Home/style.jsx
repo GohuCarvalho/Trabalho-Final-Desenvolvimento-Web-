@@ -1,12 +1,21 @@
 import styled from 'styled-components';
 
-export const LoadingMessage = styled.div`
-    color: white;
-    font-size: 1.5rem;
-    padding: 50px;
+export const MainContent = styled.main`
+    width: 100%;
+    max-width: 1400px;
+    margin: 2.5rem auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+`;
+
+export const LoadingMessage = styled.p`
+    color: #fff;
     text-align: center;
-    height: 60vh; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-top: 50px;
+`;
+export const ErrorMessage = styled.p`
+    color: red;
+    text-align: center;
+    margin-top: 50px;
 `;

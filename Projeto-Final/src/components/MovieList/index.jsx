@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Api } from '../../services/Api';
+import { DetailsModal } from '../DetailsModal';
 import { Moviecard } from '../MovieCard';
 import {
     ListWrapper,
@@ -7,24 +8,47 @@ import {
     ErrorMessage
 } from './style';
 
-const TMDB_BEARER_TOKEN = import.meta.env.VITE_TMDB_BEARER_TOKEN
+const TMDB_BEARER_TOKEN = import.meta.env.VITE_TMDB_BEARER_TOKEN;
 
-export function MovieList() {
+export function MovieList({ searchTerm = '' }) {
     const [movies, setMovies] = useState([]);
+    const [selectedItem, setSelectedItem] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
+
+
+    useEffect(() => {
+        const timerId = setTimeout(() => {
+            setDebouncedSearchTerm(searchTerm); 
+        }, 500); 
+        return () => clearTimeout(timerId);
+    }, [searchTerm]); 
+
 
     useEffect(() => {
         const fetchMovies = async () => {
+            setLoading(true); 
+            setError(null);   
+
             const config = {
                 headers: {
                     'Authorization': `Bearer ${TMDB_BEARER_TOKEN}`,
                     'accept': 'application/json'
-                }
+                },
+                params: {} 
             };
 
+            let endpoint = '';
+            if (debouncedSearchTerm) {
+                endpoint = '/search/movie';
+                config.params.query = debouncedSearchTerm;
+            } else {
+                endpoint = '/movie/popular';
+            }
+
             try {
-                const resposta = await Api.get('/movie/popular', config);
+                const resposta = await Api.get(endpoint, config);
                 setMovies(resposta.data.results);
             } catch (err) {
                 console.error("Erro ao buscar filmes:", err);
@@ -35,21 +59,37 @@ export function MovieList() {
         };
 
         fetchMovies();
-    }, []);
+    }, [debouncedSearchTerm]);
 
-    if (loading) {
-        return <LoadingMessage>Carregando...</LoadingMessage>;
-    }
 
-    if (error) {
-        return <ErrorMessage>Erro: {error}</ErrorMessage>;
-    }
+    const handleCardClick = (movie) => {
+        setSelectedItem(movie);
+    };
+
+    const handleCloseModal = () => {
+        setSelectedItem(null);
+    };
+
+
+    if (loading) return <LoadingMessage>Carregando...</LoadingMessage>;
+    if (error) return <ErrorMessage>Erro: {error}</ErrorMessage>;
+    if (!loading && movies.length === 0) return <ErrorMessage>Nenhum filme encontrado.</ErrorMessage>;
 
     return (
-        <ListWrapper>
-            {movies.map((movie) => (
-                <Moviecard key={movie.id} movie={movie} />
-            ))}
-        </ListWrapper>
+        <>
+            <ListWrapper>
+                {movies.map((movie) => (
+                    <Moviecard
+                        key={movie.id}
+                        movie={movie}
+                        onClick={() => handleCardClick(movie)}
+                    />
+                ))}
+            </ListWrapper>
+
+            {selectedItem && (
+                <DetailsModal item={selectedItem} onClose={handleCloseModal} />
+            )}
+        </>
     );
 }

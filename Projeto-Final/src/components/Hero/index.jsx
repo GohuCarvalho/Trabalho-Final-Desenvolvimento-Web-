@@ -1,7 +1,6 @@
 import React from 'react';
 import {
     HeroWrapper,
-    HeroBackdrop,
     HeroOverlay,
     HeroContent,
     Title,
@@ -9,18 +8,21 @@ import {
 } from './style';
 
 const BACKDROP_BASE_URL = "https://image.tmdb.org/t/p/w1280";
+const POSTER_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
 export function Hero({ movie }) {
-    
-    const backdropUrl = movie.backdrop_path  ? `${BACKDROP_BASE_URL}${movie.backdrop_path}`: "";
+    const backdropUrl = movie?.backdrop_path
+        ? `${BACKDROP_BASE_URL}${movie.backdrop_path}`
+        : movie?.poster_path
+            ? `${POSTER_BASE_URL}${movie.poster_path}`
+            : null;
 
     return (
-        <HeroWrapper>
-            {backdropUrl && <HeroBackdrop src={backdropUrl} alt={movie.title} />}
+        <HeroWrapper $backdrop={backdropUrl}>
             <HeroOverlay />
             <HeroContent>
-                <Title>{movie.title}</Title>
-                <Overview>{movie.overview}</Overview>
+                <Title>{movie?.title || movie?.name || 'Título indisponível'}</Title>
+                <Overview>{movie?.overview || 'Sem descrição disponível.'}</Overview>
             </HeroContent>
         </HeroWrapper>
     );
