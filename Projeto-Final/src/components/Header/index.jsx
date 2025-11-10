@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import { LogoImage, NavbarBrandLink, InputProcurar } from './styles';
 
 const Header = ({ searchTerm = '', onSearchChange = () => { }, userName }) => {
@@ -16,7 +17,7 @@ const Header = ({ searchTerm = '', onSearchChange = () => { }, userName }) => {
         >
             <div className="container-fluid">
                 <NavbarBrandLink
-                    href="/home"
+                    to="/home"
                     aria-label="Logo-PopcornTv"
                 >
                     <LogoImage />
@@ -38,21 +39,21 @@ const Header = ({ searchTerm = '', onSearchChange = () => { }, userName }) => {
 
                     <ul className="navbar-nav me-auto mb-0 mb-lg-0">
                         <li className="nav-item">
-                            <a className="nav-link" href="/filmes">Filmes Populares</a>
+                            <Link className="nav-link" to="/filmes">Filmes Populares</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/series">Séries</a>
+                            <Link className="nav-link" to="/series">Séries</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="/maratonas">Maratonas</a>
+                            <Link className="nav-link active" aria-current="page" to="/maratonas">Maratonas</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="/maratonas">Desenvolvedores</a>
+                            <Link className="nav-link active" aria-current="page" to="/desenvolvedores">Desenvolvedores</Link>
                         </li>
 
                         {userName && (
                         <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="/profile">Olá, {userName}</a>
+                            <Link className="nav-link active" aria-current="page" to="/profile">Olá, {userName}</Link>
                         </li>
                         )}
                     </ul>
