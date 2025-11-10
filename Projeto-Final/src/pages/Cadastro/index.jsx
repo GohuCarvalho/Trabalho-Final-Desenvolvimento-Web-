@@ -30,6 +30,9 @@ export default function Cadastro() {
     textColor: "#FFFFFF", 
   };
 
+  // -----------------------------------------------------------------
+  // ------------------ FUNÇÃO handleCadastro CORRIGIDA --------------
+  // -----------------------------------------------------------------
   const handleCadastro = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -46,6 +49,12 @@ export default function Cadastro() {
     }
 
     try {
+      // 1. MUDANÇA: Buscamos TODOS os usuários, sem filtro na URL
+      const checkResponse = await fetch(`${MOCKAPI_URL}/usuarios`);
+      const allUsers = await checkResponse.json();
+
+      // 2. MUDANÇA: Verificamos no JavaScript se o e-mail existe
+      // Usamos .toLowerCase() para garantir que a verificação não diferencie maiúsculas/minúsculas
       const checkResponse = await fetch(`${MOCKAPI_URL}/usuarios`);
       const allUsers = await checkResponse.json();
 
@@ -53,10 +62,12 @@ export default function Cadastro() {
         user.email.toLowerCase() === email.toLowerCase()
       );
 
+      // 3. MUDANÇA: Verificamos se 'userExists' foi encontrado
       if (userExists) {
         throw new Error("Este e-mail já está cadastrado.");
       }
 
+      // 4. Se não existir, o código continua e cria o usuário (POST)
       const newUser = {
         name: name,
         email: email,
@@ -85,6 +96,9 @@ export default function Cadastro() {
       setLoading(false);
     }
   };
+  // -----------------------------------------------------------------
+  // ----------------------- FIM DA FUNÇÃO ---------------------------
+  // -----------------------------------------------------------------
 
   return (
     <Container>
