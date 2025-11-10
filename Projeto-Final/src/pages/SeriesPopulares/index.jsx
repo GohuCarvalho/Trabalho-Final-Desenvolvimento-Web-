@@ -1,12 +1,13 @@
 import React from 'react';
 import { SeriesList } from '../../components/SeriesList';
-import { MainContent } from './style';
+import { MainContent, PageTitle } from './style';
 
-export function SeriesPopulares() {
+
+export function SeriesPopulares({ searchTerm = '' }) {
     return (
         <MainContent>
-            <h1>Séries Populares</h1>
-            <SeriesList />
+            <PageTitle>Series Populares</PageTitle>
+            <SeriesList searchTerm={searchTerm} />
         </MainContent>
     );
 }
