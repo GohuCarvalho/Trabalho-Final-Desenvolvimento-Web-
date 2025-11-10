@@ -4,7 +4,7 @@ export const MainContent = styled.main`
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0 20px;
     box-sizing: border-box;
     overflow-x: hidden;
     font-family: "Bungee", sans-serif;
