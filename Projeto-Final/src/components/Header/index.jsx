@@ -1,7 +1,7 @@
 import React from "react";
 import { LogoImage, NavbarBrandLink, InputProcurar } from './styles';
 
-const Header = ({ searchTerm = '', onSearchChange = () => { } }) => {
+const Header = ({ searchTerm = '', onSearchChange = () => { }, userName }) => {
 
     const handleChange = (e) => {
         const val = e.target.value;
@@ -41,7 +41,7 @@ const Header = ({ searchTerm = '', onSearchChange = () => { } }) => {
                             <a className="nav-link" href="/filmes">Filmes Populares</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/filmes">Séries</a>
+                            <a className="nav-link" href="/series">Séries</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link active" aria-current="page" href="/maratonas">Maratonas</a>
@@ -49,6 +49,12 @@ const Header = ({ searchTerm = '', onSearchChange = () => { } }) => {
                         <li className="nav-item">
                             <a className="nav-link active" aria-current="page" href="/maratonas">Desenvolvedores</a>
                         </li>
+
+                        {userName && (
+                        <li className="nav-item">
+                            <a className="nav-link active" aria-current="page" href="/profile">Olá, {userName}</a>
+                        </li>
+                        )}
                     </ul>
 
                     <form className="d-flex" role="search" onSubmit={(e) => e.preventDefault()}>
