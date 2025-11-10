@@ -6,7 +6,7 @@ const mobileBreakpoint = '768px';
 export const FooterContainer = styled.footer`
     background-color: #5f5f5fff;
     color: #ffffff;
-    margin-top: 50px;
+    margin-top: 5rem;
     width: 100%;
 `;
 
@@ -14,7 +14,7 @@ export const FooterContent = styled.div`
     width:80%;
     align-items: center;
     margin: 0 auto;
-    padding: 5rem;
+    padding: 3.5rem;
     display: flex;
     justify-content: space-between;
     gap: 30px;
