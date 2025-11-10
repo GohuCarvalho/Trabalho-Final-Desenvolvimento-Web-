@@ -2,17 +2,6 @@ import styled from 'styled-components';
 import logoDefault from '../../assets/Logos/popcornTv-logo.svg';
 import logoHover from '../../assets/Logos/popcornTv-logo-hovered.svg';
 
-export const MeuMenuColapsado = styled.div`
-    border-radius: 1rem;
-    
-    @media (max-width: 992px) {
-        border-radius: 0.5rem;
-    }
-`;
-export const ContainerFluid = styled.span`
-    width: 40%
-`;
-
 export const LogoImage = styled.span`
     display: inline-block;
     width: 8rem;

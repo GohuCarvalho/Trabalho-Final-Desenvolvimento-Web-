@@ -8,6 +8,7 @@ import { FilmesPopulares } from '../pages/FilmesPopulares';
 import { NotFound } from '../pages/PageNotFound';
 import Cadastro from '../pages/Cadastro'; 
 import { WatchlistMoviePage } from '../pages/WatchlistMovies';
+import { WatchlistTvPage } from '../pages/WatchlistTv/index';
 
 export const Routers = ({ searchTerm = '' }) => {
     return (
@@ -23,8 +24,8 @@ export const Routers = ({ searchTerm = '' }) => {
                 />
                 <Route path="/filmes" element={<FilmesPopulares searchTerm={searchTerm} />} />
                 <Route path="/maratonas" element={<Maratonas />} />
-                <Route path="/watchlistfilmes" element={<WatchlistMoviePage />} />
-                {/* <Route path="/watchlistseries" element={<WatchlistTvPage />} /> */}
+                <Route path="/maratonar-filmes" element={<WatchlistMoviePage />} />
+                <Route path="/maratonar-series" element={<WatchlistTvPage />} />
                 <Route path='*' element={<NotFound />} />
             </Routes>
         </>

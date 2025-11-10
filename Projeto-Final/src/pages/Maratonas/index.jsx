@@ -45,7 +45,7 @@ export function Maratonas() {
     };
 
     const handleCardClick = (type) => {
-        navigate(`/watchlist${type}`);
+        navigate(`/maratonar${type}`);
     };
     const totalMovieRuntime = calculateTotalRuntime(movieList, 'movie');
     const totalTvRuntime = calculateTotalRuntime(tvList, 'tv');
@@ -78,7 +78,7 @@ return (
                             filmes={movieList}
                         />
                         <CardMaratonas
-                        
+                            onClick={() => handleCardClick("tv")}
                             categoria="Séries"
                             quantidade= {tvList.length}
                             tempoTotal= {totalTvRuntime}

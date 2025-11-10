@@ -10,7 +10,7 @@ export const MaratonaContentContainer  = styled.div`
     display: flex;
     flex-direction: row;    
     padding: 2rem;
-    margin-top: rem;
+    margin-top: 2.5rem;
 
     @media (max-width: 770px) {
     flex-direction: column;
