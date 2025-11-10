@@ -23,15 +23,14 @@ const filmeData = {
 
 const TMDB_IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
-const CardMaratonas = ( {categoria, quantidade , tempoTotal , filmes } ) => {
+const CardMaratonas = ( {categoria, quantidade , tempoTotal , filmes , onClick} ) => {
     return (
-        <CardContainer>
+        <CardContainer onClick={onClick}>
 
             <Titulo>{categoria}</Titulo>
             <CardContent>
                 <CardText>
                     <Contador>
-                        {/* Remove o texto da Label e coloca no JSX */}
                         <Label>QUANTIDADE:</Label> 
                         {quantidade}
                     </Contador>
