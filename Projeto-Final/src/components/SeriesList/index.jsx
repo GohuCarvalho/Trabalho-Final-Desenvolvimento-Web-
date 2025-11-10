@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Api } from '../../services/Api';
+import { DetailsModal } from '../DetailsModal';
 import { Moviecard } from '../MovieCard';
 import {
     ListWrapper,
@@ -7,10 +8,11 @@ import {
     ErrorMessage
 } from './style';
 
-const TMDB_BEARER_TOKEN = import.meta.env.VITE_TMDB_BEARER_TOKEN
+const TMDB_BEARER_TOKEN = import.meta.env.VITE_TMDB_BEARER_TOKEN;
 
 export function SeriesList() {
     const [series, setSeries] = useState([]);
+    const [selectedItem, setSelectedItem] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -37,19 +39,32 @@ export function SeriesList() {
         fetchSeries();
     }, []);
 
-    if (loading) {
-        return <LoadingMessage>Carregando...</LoadingMessage>;
-    }
+    const handleCardClick = (serie) => {
+        setSelectedItem(serie);
+    };
 
-    if (error) {
-        return <ErrorMessage>Erro: {error}</ErrorMessage>;
-    }
+    const handleCloseModal = () => {
+        setSelectedItem(null);
+    };
+
+    if (loading) return <LoadingMessage>Carregando...</LoadingMessage>;
+    if (error) return <ErrorMessage>Erro: {error}</ErrorMessage>;
 
     return (
-        <ListWrapper>
-            {series.map((serie) => (
-                <Moviecard key={serie.id} movie={serie} />
-            ))}
-        </ListWrapper>
+        <>
+            <ListWrapper>
+                {series.map((serie) => (
+                    <Moviecard
+                        key={serie.id}
+                        movie={serie}
+                        onClick={() => handleCardClick(serie)}
+                    />
+                ))}
+            </ListWrapper>
+
+            {selectedItem && (
+                <DetailsModal item={selectedItem} onClose={handleCloseModal} />
+            )}
+        </>
     );
 }
