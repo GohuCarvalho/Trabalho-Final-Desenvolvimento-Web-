@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-export const NavbarBrandLink = styled.a`
+export const NavbarBrandLink = styled(Link)`
 	display: inline-flex;
 	align-items: center;
 	text-decoration: none;
