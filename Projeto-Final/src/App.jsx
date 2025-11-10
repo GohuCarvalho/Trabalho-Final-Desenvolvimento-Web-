@@ -8,7 +8,6 @@ import { WatchListProvider } from "./contexts/WatchListContext";
 import MainBody from './components/MainBody/index';
 import Header from './components/Header/index';
 import { Routers } from './routers/Routers';
-import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   const location = useLocation();
@@ -22,17 +21,12 @@ function App() {
   };
 
   return (
-
     <ApiProvider>
       <UserProvider>
         <WatchListProvider>
           <MainBody>
-            <BrowserRouter>
-
-               {showHeader && <Header searchTerm={searchTerm} onSearchChange={handleSearchChange} />}
-
-              <Routers searchTerm={searchTerm} />
-           </BrowserRouter>
+            {showHeader && <Header searchTerm={searchTerm} onSearchChange={handleSearchChange} />}
+            <Routers searchTerm={searchTerm} />
           </MainBody>
         </WatchListProvider>
       </UserProvider>
