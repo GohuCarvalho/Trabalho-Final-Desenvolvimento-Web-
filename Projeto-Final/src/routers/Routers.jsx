@@ -33,3 +33,7 @@ export const Routers = ({ searchTerm = '' }) => {
         </>
     );
 };
+            </Routes>
+        </>
+    );
+};
