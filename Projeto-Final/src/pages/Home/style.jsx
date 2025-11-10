@@ -4,9 +4,9 @@ export const MainContent = styled.main`
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0 20px;
     box-sizing: border-box;
-    overflow-x: hidden;
+    position: relative;
 `;
 
 export const LoadingMessage = styled.p`
