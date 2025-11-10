@@ -16,15 +16,14 @@ import {
 export function DetailsModal({ item, onClose }) {
   if (!item) return null;
   
-  const { watchList, addToWatchList } = useContext(WatchListContext);
-  const alreadyAdded = watchList.some((m) => m.id === item.id);
-
-
-
+  const { toggleWatchlistItem , isItemOnWatchlist: checkWatchlistStatus } = useContext(WatchListContext); 
+  
   const TMDB_IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
   const imageUrl = item.poster_path ? `${TMDB_IMAGE_BASE_URL}${item.poster_path}` : "";
   const movieTitle = item.title || item.name;
   const releaseDate = item.release_date || item.first_air_date;
+
+  const isAdded = checkWatchlistStatus(item.id, "movie");
 
   return (
     <ModalOverlay onClick={onClose}>
@@ -36,8 +35,8 @@ export function DetailsModal({ item, onClose }) {
         <InfoText><strong>Lançamento:</strong> {releaseDate}</InfoText>
         <InfoText><strong>Avaliação:</strong> {item.vote_average?.toFixed(1) || "N/A"}</InfoText>
     <Actions>
-          <ActionButton onClick={() => addToWatchList(item)} disabled={alreadyAdded}>
-              {alreadyAdded ? "Já na WatchList" : "Adicionar à WatchList"}
+          <ActionButton onClick={() => toggleWatchlistItem(item.id, "movie")}>
+              {isAdded ? "Remover da WatchList" : "Adicionar à WatchList"}
           </ActionButton>
         </Actions>
       </ModalContent>

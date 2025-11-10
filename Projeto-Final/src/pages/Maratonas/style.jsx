@@ -6,7 +6,6 @@ export const MaratonaTitleContainer  = styled.div`
     justify-content: center;
 `;
 
-
 export const MaratonaContentContainer  = styled.div`
     display: flex;
     flex-direction: row;    
@@ -34,7 +33,6 @@ export const MaratonaContentRight  = styled.div`
     align-items: center;
     }
 `;
-
 
 export const MaratonaH2  = styled.h2`
     color:#fff;
@@ -102,12 +100,8 @@ export const ButtonMaratonar  = styled.button`
         background-color: #6b4ce3;
     }
 
-     @media (max-width: 820px) {
+    @media (max-width: 820px) {
     width: 80%;
     }
 `;
 
-
-
-    // border: 0.03rem solid #929292ff;
-    // border-radius: 6px;

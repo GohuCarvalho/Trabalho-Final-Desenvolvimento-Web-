@@ -8,7 +8,6 @@ export const colors = {
   success: "#00b894",
 };
 
-// Container principal do modal
 export const ModalOverlay = styled.div`
   position: fixed;
   inset: 0;
@@ -20,7 +19,6 @@ export const ModalOverlay = styled.div`
   z-index: 1050;
 `;
 
-// Caixa do modal
 export const ModalContent = styled.div`
   background-color: white;
   border-radius: 16px;
@@ -30,7 +28,6 @@ export const ModalContent = styled.div`
   overflow: hidden;
 `;
 
-// Cabeçalho
 export const ModalHeader = styled.div`
   background-color: ${({ color }) => color || colors.primary};
   padding: 10px 20px;
@@ -61,7 +58,6 @@ export const ModalHeader = styled.div`
   }
 `;
 
-// Corpo
 export const ModalBody = styled.div`
   padding: 24px;
 
@@ -91,7 +87,6 @@ export const ModalBody = styled.div`
   }
 `;
 
-// Alerta de resultado
 export const ResultAlert = styled.div`
   background-color: ${colors.success}22;
   color: ${colors.success};
