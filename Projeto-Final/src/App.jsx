@@ -25,8 +25,10 @@ function App() {
       <UserProvider>
         <WatchListProvider>
           <MainBody>
-            {showHeader && <Header searchTerm={searchTerm} onSearchChange={handleSearchChange} />}
-            <Routers searchTerm={searchTerm} />
+
+              {showHeader && <Header searchTerm={searchTerm} onSearchChange={handleSearchChange} />}
+              <Routers searchTerm={searchTerm} />
+
           </MainBody>
         </WatchListProvider>
       </UserProvider>

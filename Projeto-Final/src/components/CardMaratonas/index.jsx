@@ -37,7 +37,7 @@ const CardMaratonas = ( {categoria, quantidade , tempoTotal , filmes } ) => {
                     </Contador>
                     <Contador>
                         <Label>TOTAL:</Label>
-                        {tempoTotal}
+                        {tempoTotal} min
                     </Contador>
                 </CardText>
                 <CardMiniaturas>

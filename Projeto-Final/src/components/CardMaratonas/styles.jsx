@@ -79,15 +79,15 @@ export const Miniatura = styled.img`
     let top = 0; 
     let left = 0;
     let rotate = 0;
-    let zIndex = $index + 1;
+    let zIndex = 5 - $index;
 
     switch ($index) {
         case 0:
-            left = 80; 
+            left = 40; 
             rotate = -10;
             break;                      
         case 1:
-            left = 0; 
+            left = 20; 
             rotate = -15;
             break;            
         case 2:
@@ -95,11 +95,11 @@ export const Miniatura = styled.img`
             rotate = 10;
             break;
         case 3:
-            left = 20;
+            left = 0;
             rotate = 5;        
             break;
         case 4:
-            left = 40; 
+            left = 80; 
             rotate = -5;
             break;  
     }

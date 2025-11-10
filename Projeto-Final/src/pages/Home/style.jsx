@@ -6,7 +6,8 @@ export const MainContent = styled.main`
     margin: 0 auto;
     padding: 0 20px;
     box-sizing: border-box;
-    position: relative;
+    overflow-x: hidden;
+    font-family: "Bungee", sans-serif;
 `;
 
 export const LoadingMessage = styled.p`
