@@ -18,7 +18,7 @@ export function Hero({ movie }) {
             : null;
 
     return (
-        <HeroWrapper backdrop={backdropUrl}>
+        <HeroWrapper $backdrop={backdropUrl}>
             <HeroOverlay />
             <HeroContent>
                 <Title>{movie?.title || movie?.name || 'Título indisponível'}</Title>

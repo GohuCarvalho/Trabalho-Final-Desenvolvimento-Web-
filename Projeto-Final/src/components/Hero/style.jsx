@@ -12,9 +12,9 @@ export const HeroWrapper = styled.div`
     position: relative;
     margin: 0;
     padding: 0;
-    background: ${({ backdrop }) => 
-        backdrop 
-            ? `url(${backdrop})`
+    background: ${({ $backdrop }) => 
+        $backdrop 
+            ? `url(${$backdrop})`
             : 'linear-gradient(180deg, #362589 0%, #1a0450 100%)'};
     background-position: center;
     background-size: cover;
@@ -27,10 +27,9 @@ export const HeroWrapper = styled.div`
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(0, 0, 0, 0.3); /* Overlay sutil para melhorar legibilidade */
+        background: rgba(0, 0, 0, 0.3);
     }
 `;
-
 
 export const HeroOverlay = styled.div`
     position: absolute;
