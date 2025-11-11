@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 
-export const PageWrapper = styled.div`
+export const LancamentoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   background-color: #030712;
   min-height: 100vh;
   padding: 4rem 1rem;
+  
 `;
 
 export const Header = styled.header`

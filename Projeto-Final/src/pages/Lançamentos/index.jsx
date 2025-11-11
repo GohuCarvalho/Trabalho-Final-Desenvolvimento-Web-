@@ -1,6 +1,6 @@
 import React from 'react';
 import CardLancamento from '../../components/CardLançamento';
-import { PageWrapper, Header, PageTitle } from './style';
+import { LancamentoContainer, Header, PageTitle } from './style';
 
 import EraDoReact from '../../assets/integrantes/assets/EraDoReact.png'
 
@@ -12,20 +12,24 @@ const Lancamento = () => {
   };
 
   return (
-    <PageWrapper>
+    <LancamentoContainer>
+        <Header>
+          <PageTitle>Lançamento da Semana</PageTitle>
+        </Header>
+
+        <CardLancamento
+          titulo={dadosFilme.titulo}
+          tagline={dadosFilme.tagline}
+          imagemUrl={EraDoReact}
+          sinopse={dadosFilme.sinopse}
+        />
+
+      <lancamentoRight>
+
+      </lancamentoRight>
       
-      <Header>
-        <PageTitle>Lançamento da Semana</PageTitle>
-      </Header>
       
-      <CardLancamento
-        titulo={dadosFilme.titulo}
-        tagline={dadosFilme.tagline}
-        imagemUrl={EraDoReact}
-        sinopse={dadosFilme.sinopse}
-      />
-      
-    </PageWrapper>
+    </LancamentoContainer>
   );
 };
 
