@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const PRIMARY_COLOR = "#2F246D"; 
 const SECONDARY_COLOR = "#007BFF"; 
-const CARD_BACKGROUND = "#cbcbcbff"; 
+const CARD_BACKGROUND = "#808080ff"; 
 const INPUT_BACKGROUND = "#3a3a3a"; 
 const TEXT_COLOR = "#F0F0F0"; 
 
