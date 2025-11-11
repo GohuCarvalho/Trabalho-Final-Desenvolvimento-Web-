@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from 'react-router-dom';
 import { BsPersonCircle } from 'react-icons/bs'; 
 import { LogoImage, NavbarBrandLink, InputProcurar } from './styles';
+import LogoutButton from "../LogoutButton";
+import { useAuth } from "../../hooks/UserContext";
 
-const Header = ({ searchTerm = '', onSearchChange = () => { }, userName }) => {
+
+const Header = ({ searchTerm = '', onSearchChange = () => { }}) => {
+
+    const { logout, user } = useAuth();
 
     const handleChange = (e) => {
         const val = e.target.value;
         onSearchChange(val);
     };
+
+    const handleLogout = () => {
+        logout();
+    };
+
+
+
 
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary w-100 py-0 px-5">
@@ -30,7 +42,7 @@ const Header = ({ searchTerm = '', onSearchChange = () => { }, userName }) => {
                 <div className="collapse navbar-collapse" id="navbarTogglerPopcorn">
                     <ul className="navbar-nav me-auto mb-0 mb-lg-0">
                         <li className="nav-item">
-                            <Link className="nav-link" to="/filmes">Filmes Populares</Link>
+                            <Link className="nav-link" to="/filmes">Filmes</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/series">Séries</Link>
@@ -45,13 +57,16 @@ const Header = ({ searchTerm = '', onSearchChange = () => { }, userName }) => {
                     <ul className="navbar-nav ms-auto mb-0 mb-lg-0">
                         <li className="nav-item">
                             <Link className="nav-link" to="/perfil" aria-label="Perfil">
-                                <span style={{display:'flex',alignItems:'center',gap:'6px'}}>
+                                <span style={{display:'flex',alignItems:'center',gap:'1rem'}}>
                                     <BsPersonCircle size={24} color="currentColor" /> 
-                                    {userName ? `Olá, ${userName}` : 'Perfil'}
+                                    {user ? `Olá, ${user.name}` : 'Perfil'}
                                 </span>
                             </Link>
                         </li>
+                    <LogoutButton 
+                        handleLogout={handleLogout} />
                     </ul>
+
                     <form className="d-flex" role="search" onSubmit={(e) => e.preventDefault()}>
                         <InputProcurar
                             className="form-control me-2 focus-ring"
