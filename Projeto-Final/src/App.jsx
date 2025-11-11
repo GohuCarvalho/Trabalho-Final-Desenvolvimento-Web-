@@ -9,8 +9,6 @@ import MainBody from "./components/MainBody/index";
 import Header from "./components/Header/index";
 import { Routers } from "./routers/Routers";
 import Footer from "./components/Footer";
-import Lancamento from "./lançamento/index";
-
 function App() {
   const location = useLocation();
   const noHeaderPaths = ["/", "/login", "/loading"];

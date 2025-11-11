@@ -1,29 +1,34 @@
-import React from "react";
+import React from 'react';
 import {
-  CardContainer,
-  Capa,
-  Overlay,
-  Conteudo,
+  CardWrapper,
+  ImageContainer,
+  PosterImage,
+  ContentWrapper,
+  Title,
   Tagline,
-  Titulo,
-  Sinopse,
-} from "./style.jsx";
+  Divider,
+  SynopsisTitle,
+  SynopsisText,
+} from './style';
 
-const CardLancamento = ({ capaUrl, tagline, titulo, sinopse }) => {
+const CardLancamento = ({ imagemUrl, titulo, tagline, sinopse }) => {
   return (
-    <CardContainer>
-      <Capa src={capaUrl} alt={`Capa de ${titulo}`} />
-      <Overlay />
+    <CardWrapper>
+      <ImageContainer>
+        <PosterImage src={imagemUrl} alt={`Pôster de ${titulo}`} />
+      </ImageContainer>
 
-      <Conteudo>
-        <Tagline>{tagline || "Lançamento da Semana PopcornTV!"}</Tagline>
-        <Titulo>{titulo || "Nome do Grande Lançamento"}</Titulo>
-        <Sinopse>
-          {sinopse ||
-            "Uma sinopse curta e impactante para prender a atenção do usuário."}
-        </Sinopse>
-      </Conteudo>
-    </CardContainer>
+      <ContentWrapper>
+        <Title>{titulo}</Title>
+        <Tagline>{tagline}</Tagline>
+
+        <Divider />
+        <div>
+          <SynopsisTitle>Sinopse</SynopsisTitle>
+          <SynopsisText>{sinopse}</SynopsisText>
+        </div>
+      </ContentWrapper>
+    </CardWrapper>
   );
 };
 
