@@ -7,15 +7,15 @@ import {
     ErrorMessage
 } from './style';
 import { WatchListContext } from '../../contexts/WatchListContext';
-// import { MovieDetails } from '../MovieCard/style';
-// import { Moviecard } from '../MovieCard';
+import { MovieDetails } from '../MovieCard/style';
+import { Tvcard } from '../TvCard';
 
 export function WatchlistTv() {
     const {tvList} = useContext(WatchListContext);
     const [selectedItem, setSelectedItem] = useState(null);
 
-    const handleCardClick = (tv) => {
-        setSelectedItem(tv);
+    const handleCardClick = (series) => {
+        setSelectedItem(series);
     };
 
     const handleCloseModal = () => {
@@ -26,11 +26,11 @@ export function WatchlistTv() {
     return (
         <>
             <ListWrapper>
-                {tvList.map((tv) => (
+                {tvList.map((series) => (
                     <Tvcard
-                        key={tv.id}
-                        tv={tv}
-                        onClick={() => handleCardClick(tv)}
+                        key={series.id}
+                        movie={series}
+                        onClick={() => handleCardClick(series)}
                     />
                 ))}
             </ListWrapper>
