@@ -3,12 +3,29 @@ Documentação do Projeto: PopcornTv
 Página home:
 
 Página de Login/ Cadastro
-Página Filmes Populares
-Página Séries Populares
+
+<h2> 🎬 Filmes Populares</h2>
+
+A página FilmesPopulares é uma página de rota simples que exibe uma lista de filmes populares e suporta busca.
+
+Estrutura e Função: O componente renderiza o contêiner centralizado (<MainContent>) e o título da página (<PageTitle>). O conteúdo principal é o componente <MovieList />, que é responsável por buscar e exibir os filmes populares, podendo filtrar os resultados através da propriedade searchTerm.
+
+<img width="1890" height="915" alt="image" src="https://github.com/user-attachments/assets/1d25d019-af95-46dd-ab0d-43ba7157f009" />
+
+
+<h2> 📺 Séries Populares</h2>
+
+A página SeriesPopulares é uma página de rota simples que exibe uma lista de séries filtráveis.<br>
+
+Estrutura e Função: O componente renderiza um contêiner principal (<MainContent>) que centraliza o conteúdo em até 1200px de largura. O objetivo é apresentar o título da página e o componente <SeriesList />, que é responsável por buscar e exibir as séries populares, potencialmente filtradas por um termo de busca (searchTerm).<br>
+
+<img width="1885" height="836" alt="image" src="https://github.com/user-attachments/assets/e7d2f41d-dff3-40aa-98ec-ee2348def03f" />
+
 
 <h2> 💟 Maratonas</h2>
 A página Maratonas é o hub de planejamento de visualização do usuário, onde ele pode visualizar um resumo de suas watchlists de filmes e séries e calcular o tempo que levará para completá-las.<br><br>
-<img width="1894" height="912" alt="image" src="https://github.com/user-attachments/assets/42cb84b0-4783-4026-8cac-38745a297b80" />
+<img width="1891" height="847" alt="image" src="https://github.com/user-attachments/assets/da40f1ea-5803-4b6d-a8a7-ae5acd699b13" />
+
 
 
 |  Funcionalidade Principal |  Descrição |
@@ -55,6 +72,9 @@ O componente WatchlistMovie é o componente de visualização responsável por r
 | Interatividade |  O estado local selectedItem controla qual filme está sendo visualizado no modal de detalhes. | A função handleCardClick define o item selecionado e abre o modal.  |
 | Modal  | Quando um filme é selecionado (selectedItem não é null), o <DetailsModal /> é renderizado para exibir informações detalhadas.  | O modal é fechado pela função handleCloseModal.  |
 
+<img width="auto" height="450" alt="image" src="https://github.com/user-attachments/assets/1bd74d6a-5dfa-4daf-bbb2-0b54352ccd6b" />
+
+
 <h3>d. Componente: WatchlistTv</h3>
 Este componente é a página de visualização da lista de séries salvas pelo usuário, operando de forma reativa com o WatchListContext.<br>
 
@@ -88,6 +108,9 @@ Este é um componente de apresentação usado para exibir detalhes do lançament
 
 <h3>b. Página Lançamento</h3>
 A página de Lançamento (index.jsx) é estruturada para centralizar o conteúdo e serve como o contêiner principal para o componente de destaque, o CardLancamento. Seus estilos, definidos em style.jsx, foram pensados para serem responsiva, otimizando a visualização em dispositivos móveis.
+
+<img width="1414" height="726" alt="image" src="https://github.com/user-attachments/assets/6ef99f6e-0800-49a5-9845-6a6497b7e415" />
+
 
 ```
 const dadosFilme = {
