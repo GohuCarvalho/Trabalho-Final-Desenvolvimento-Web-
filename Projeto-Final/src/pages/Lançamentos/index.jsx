@@ -18,17 +18,10 @@ const Lancamento = () => {
         </Header>
 
         <CardLancamento
-          titulo={dadosFilme.titulo}
-          tagline={dadosFilme.tagline}
-          imagemUrl={EraDoReact}
-          sinopse={dadosFilme.sinopse}
-        />
-
-      <lancamentoRight>
-
-      </lancamentoRight>
-      
-      
+            imagemUrl={EraDoReact}
+            titulo={dadosFilme.titulo}
+            tagline={dadosFilme.tagline}
+            sinopse={dadosFilme.sinopse}/>         
     </LancamentoContainer>
   );
 };
