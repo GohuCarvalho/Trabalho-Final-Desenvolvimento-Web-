@@ -11,7 +11,7 @@ import { Routers } from "./routers/Routers";
 import Footer from "./components/Footer";
 function App() {
   const location = useLocation();
-  const noHeaderPaths = ["/", "/login", "/loading"];
+  const noHeaderPaths = ["/", "/cadastro", "/loading"];
   const showHeader = !noHeaderPaths.includes(location.pathname);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -29,6 +29,7 @@ function App() {
               <Header
                 searchTerm={searchTerm}
                 onSearchChange={handleSearchChange}
+                
               />
             )}
             <Routers searchTerm={searchTerm} />

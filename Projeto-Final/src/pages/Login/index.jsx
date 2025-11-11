@@ -117,7 +117,7 @@ export default function Login() {
           </SubmitButton>
 
           <TicketFooter color={currentStyle.textColor}>
-            Não tem ingresso? <Link to="/">Cadastre-se</Link>
+            Não tem ingresso? <Link to="/cadastro">Cadastre-se</Link>
           </TicketFooter>
         </Form>
       </Content>

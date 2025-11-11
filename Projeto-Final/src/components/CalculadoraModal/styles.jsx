@@ -76,8 +76,9 @@ export const ModalBody = styled.div`
     border-radius: 8px;
     padding: 8px 10px;
     width: 10%;
-    background-color: ${colors.secondary}95;
+    background-color: ${colors.primary};
     text-align: center;
+    font-family: 'Bungee', 'sans-serif';
 
     &:focus {
       outline: none;

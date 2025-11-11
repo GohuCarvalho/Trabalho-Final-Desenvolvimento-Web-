@@ -44,15 +44,20 @@ export const CardText = styled.div`
     justify-content: center;
     gap: 2rem;
     font-family: Bungee, sans-serif;
+
+    @media (max-width: 820px) {
+    flex-direction: column;
+    gap: 0.2rem;  
+    }
 `;
 
 export const Contador = styled.p`
     font-size: 1.2rem;
     margin: 0;
-    @media (max-width: 820px) {
-    font-size: 0.9rem;
-    }
 
+    @media (max-width: 820px) {
+    font-size: 1rem;
+    }
 `;
 
 export const Label = styled.span`
