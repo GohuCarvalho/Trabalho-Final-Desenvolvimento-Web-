@@ -1,8 +1,21 @@
-Documentação do Projeto: PopcornTv
+<h1>Documentação do Projeto: 🍿PopcornTv </h1>
 
-Página home:
+<h2>🔑 Login e Cadastro: Resumo Unificado</h2>
 
-Página de Login/ Cadastro
+Ambas as páginas utilizam um conjunto comum de componentes estilizados (importados de ./style.jsx) para manter a identidade visual.
+
+a. Página de Login
+Utiliza o hook useAuth() para realizar o login com e-mail e senha.<br>
+Vibe Selector: Apresenta três botões ("Relaxar", "Rir", "Me inspirar") que, ao serem selecionados, alteram dinamicamente o gradiente de fundo do Container e a mensagem de boas-vindas.<br>
+
+
+b. Página de Cadastro
+Permite o registro de um novo usuário com um formulário de quatro campos.<br>
+Inputs: Nome, E-mail, Senha e Confirmação de Senha.<br>
+Validação: Executa verificações essenciais antes da API, como preenchimento de todos os campos e confirmação de que a Senha e a Confirmação de Senha são idênticas.<br>
+API (MockAPI): Antes de criar a conta, faz uma requisição para verificar se o e-mail já existe. Se for único, envia um POST para registrar o novo usuário.<br>
+Fluxo: Em caso de sucesso, notifica o usuário e o redireciona para a página de /login.<br>
+
 
 <h2> 🎬 Filmes Populares</h2>
 
