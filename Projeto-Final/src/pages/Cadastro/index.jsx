@@ -79,7 +79,7 @@ export default function Cadastro() {
       }
 
       alert("Cadastro realizado com sucesso!");
-      navigate('/login'); 
+      navigate('/'); 
 
     } catch (error) {
       console.error("Erro no cadastro:", error);
