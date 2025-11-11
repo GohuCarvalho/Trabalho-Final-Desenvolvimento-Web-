@@ -1,73 +1,70 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-const COR_PRINCIPAL = "#FFD700";
-const COR_SECUNDARIA = "#FFFFFF";
-
-export const CardContainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: 450px;
-  margin: 20px 0;
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-`;
-
-export const Capa = styled.img`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-`;
-
-export const Overlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(0, 0, 0, 0.4) 50%,
-    rgba(0, 0, 0, 0.8) 100%
-  );
-`;
-
-export const Conteudo = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
+export const CardWrapper = styled.div`
+  max-width: 800px;
+  margin: 40px auto;
   padding: 30px;
-  width: 100%;
-  z-index: 3;
-  color: ${COR_SECUNDARIA};
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+  background-color: #210d32;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  color: #ffffff;
 `;
 
-export const Tagline = styled.p`
-  font-size: 1.1em;
-  font-weight: 500;
-  color: ${COR_PRINCIPAL};
+export const ImageContainer = styled.div`
+  width: 100%;
+  max-width: 600px;
+  height: auto; 
+  margin: 0 auto 20px auto;
+  overflow: hidden;
+`;
+
+export const PosterImage = styled.img`
+  width: 100%;
+  height: auto; 
+  max-height: 450px; 
+  object-fit: contain; 
+  display: block;
+  border-radius: 4px;
+`;
+
+export const ContentWrapper = styled.div`
+  padding: 0 15px;
+`;
+
+export const Title = styled.h2`
+  color: #ffffff;
+  font-size: 2.5em;
   margin-bottom: 5px;
 `;
 
-export const Titulo = styled.h1`
-  font-size: 3.5em;
-  margin: 0 0 10px 0;
-  line-height: 1.1;
+export const Tagline = styled.p`
+  color: #cccccc;
+  font-size: 1.1em;
+  margin-bottom: 15px;
+  margin-top: 5px;
 `;
 
-export const Sinopse = styled.p`
-  font-size: 1.2em;
-  max-width: 60%;
-  margin-bottom: 20px;
+export const Divider = styled.hr`
+  border: none;
+  border-top: 1px solid #4a2b63;
+  width: 80%;
+  margin: 25px auto;
 `;
 
+export const SynopsisTitle = styled.h3`
+  color: #ff4d94;
+  font-size: 1.3em;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+`;
 
-  
-
+export const SynopsisText = styled.p`
+  color: #e0e0e0;
+  font-size: 1em;
+  line-height: 1.6;
+  text-align: center;
+  padding: 0 20px;
+`;

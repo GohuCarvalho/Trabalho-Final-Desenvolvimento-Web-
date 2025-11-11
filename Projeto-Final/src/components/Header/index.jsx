@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import { BsPersonCircle } from 'react-icons/bs'; 
 import { LogoImage, NavbarBrandLink, InputProcurar } from './styles';
 
 const Header = ({ searchTerm = '', onSearchChange = () => { }, userName }) => {
@@ -7,22 +8,14 @@ const Header = ({ searchTerm = '', onSearchChange = () => { }, userName }) => {
     const handleChange = (e) => {
         const val = e.target.value;
         onSearchChange(val);
-        console.log('Header onChange:', val);
     };
 
     return (
-
-        <nav
-            className="navbar navbar-expand-lg bg-body-tertiary w-100 py-0 px-5"
-        >
+        <nav className="navbar navbar-expand-lg bg-body-tertiary w-100 py-0 px-5">
             <div className="container-fluid">
-                <NavbarBrandLink
-                    to="/home"
-                    aria-label="Logo-PopcornTv"
-                >
+                <NavbarBrandLink to="/home" aria-label="Logo-PopcornTv">
                     <LogoImage />
                 </NavbarBrandLink>
-
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -34,9 +27,7 @@ const Header = ({ searchTerm = '', onSearchChange = () => { }, userName }) => {
                 >
                     <span className="navbar-toggler-icon"></span>
                 </button>
-
                 <div className="collapse navbar-collapse" id="navbarTogglerPopcorn">
-
                     <ul className="navbar-nav me-auto mb-0 mb-lg-0">
                         <li className="nav-item">
                             <Link className="nav-link" to="/filmes">Filmes Populares</Link>
@@ -48,16 +39,19 @@ const Header = ({ searchTerm = '', onSearchChange = () => { }, userName }) => {
                             <Link className="nav-link active" aria-current="page" to="/maratonas">Maratonas</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="/desenvolvedores">Desenvolvedores</Link>
+                            <Link className="nav-link" to="/lancamento">Lançamento</Link>
                         </li>
-
-                        {userName && (
-                        <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="/profile">Olá, {userName}</Link>
-                        </li>
-                        )}
                     </ul>
-
+                    <ul className="navbar-nav ms-auto mb-0 mb-lg-0">
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/perfil" aria-label="Perfil">
+                                <span style={{display:'flex',alignItems:'center',gap:'6px'}}>
+                                    <BsPersonCircle size={24} color="currentColor" /> 
+                                    {userName ? `Olá, ${userName}` : 'Perfil'}
+                                </span>
+                            </Link>
+                        </li>
+                    </ul>
                     <form className="d-flex" role="search" onSubmit={(e) => e.preventDefault()}>
                         <InputProcurar
                             className="form-control me-2 focus-ring"
@@ -75,7 +69,7 @@ const Header = ({ searchTerm = '', onSearchChange = () => { }, userName }) => {
                                 '--bs-btn-hover-color': '#fff',
                                 '--bs-btn-hover-bg': '#362589',
                             }}>
-                            Search
+                            Pesquisar
                         </button>
                     </form>
                 </div>

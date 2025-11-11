@@ -36,7 +36,7 @@ const Footer = () => {
                         <MapLink href="/filmes">Filmes Populares</MapLink>
                         <MapLink href="/series">Séries</MapLink>
                         <MapLink href="/maratonas">Minhas Maratonas</MapLink>
-                        <MapLink href="/desenolvedores">Desenvolvedores</MapLink>
+                        <MapLink href="/lancamento">Lançamento</MapLink>
                 </SiteMap>
             </FooterContent>
 
