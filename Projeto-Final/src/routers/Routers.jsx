@@ -18,6 +18,29 @@ export const Routers = ({ searchTerm = '' }) => {
     return (
         <>
         <Routes>
+                <Route path="/cadastro" element={<Cadastro />} />
+                <Route path="/" element={<Login />} />
+
+                <Route path="/loading" element={<LoadingPage />} />
+                <Route
+                    path='/home'
+                    element={<Home searchTerm={searchTerm} />}
+                />
+                <Route path="/filmes" element={<FilmesPopulares searchTerm={searchTerm} />} />
+                <Route path="/maratonas" element={<Maratonas />} />
+                
+                <Route path="/perfil" element={<Perfil />} />
+
+                <Route path='/lancamento' element={<Lancamento />}/> 
+
+                <Route path="/maratonar-filmes" element={<WatchlistMoviePage />} />
+                <Route path="/maratonar-series" element={<WatchlistTvPage />} />
+                
+                <Route path="/series" element={<SeriesPopulares/>} />
+                <Route path='*' element={<NotFound />} />
+            </Routes>
+
+        {/* <Routes>
             <Route path="/" element={<Cadastro />} />
             <Route path="/login" element={<Login />} />
             <Route path='*' element={<NotFound />} />
@@ -33,7 +56,7 @@ export const Routers = ({ searchTerm = '' }) => {
                 <Route path="/maratonar-series" element={<WatchlistTvPage />} />
                 <Route path="/perfil" element={<Perfil />} />
             </Route>
-        </Routes>
+        </Routes> */}
         </>
     );
 };
