@@ -1,5 +1,7 @@
 <h1>Documentação do Projeto: 🍿PopcornTv </h1>
 
+Grupo 2 - Devs: Giselle Garcia, Hugo Carvalho, Jéssica Lima, João Gabriel Menezes, Emmanueli Schulze, William Lippi.
+
 <h2>🔑 Login e Cadastro: Resumo Unificado</h2>
 
 Ambas as páginas utilizam um conjunto comum de componentes estilizados (importados de ./style.jsx) para manter a identidade visual.
