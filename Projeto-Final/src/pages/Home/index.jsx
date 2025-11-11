@@ -49,7 +49,6 @@ export function Home({ searchTerm }) {
 
   return (
     <>
-      {/* render Hero even if no movie was loaded so user sees the section and fallback content */}
       <Hero movie={heroMovie} />
       <MainContent>
         <MovieRow
