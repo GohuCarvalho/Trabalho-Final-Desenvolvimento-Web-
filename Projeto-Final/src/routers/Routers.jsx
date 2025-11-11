@@ -12,7 +12,6 @@ import { WatchlistTvPage } from '../pages/WatchlistTv/index';
 import { Perfil } from '../pages/Perfil';
 import { SeriesPopulares } from '../pages/SeriesPopulares';
 import Lancamento from '../pages/Lançamentos'; 
-import { ProtectedRoute } from '../components/ProtectedRoute';
 
 export const Routers = ({ searchTerm = '' }) => {
     return (
