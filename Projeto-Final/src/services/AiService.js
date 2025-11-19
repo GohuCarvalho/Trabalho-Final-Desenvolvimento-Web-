@@ -1,4 +1,4 @@
-const API_KEY = "AIzaSyDrMBrXl3ypBwfcOCbG_VaRT43aGPO0jPw"; 
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 const MODEL_NAME = "gemini-2.5-flash"; 
 
