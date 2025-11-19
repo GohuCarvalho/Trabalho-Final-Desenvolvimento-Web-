@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Login from '../pages/Login';
 import LoadingPage from '../pages/LoadingPage';
-import { Home } from './../pages/Home';
+import { Home } from '../pages/Home';
 import { Maratonas } from '../pages/Maratonas/index';
 import { FilmesPopulares } from '../pages/FilmesPopulares';
 import { NotFound } from '../pages/PageNotFound';
@@ -12,6 +12,7 @@ import { WatchlistTvPage } from '../pages/WatchlistTv/index';
 import { Perfil } from '../pages/Perfil';
 import { SeriesPopulares } from '../pages/SeriesPopulares';
 import Lancamento from '../pages/Lançamentos'; 
+import AiAssistant from '../pages/AiAssistant'; 
 
 export const Routers = ({ searchTerm = '' }) => {
     return (
@@ -31,6 +32,8 @@ export const Routers = ({ searchTerm = '' }) => {
                 <Route path="/perfil" element={<Perfil />} />
 
                 <Route path='/lancamento' element={<Lancamento />}/> 
+                
+                <Route path="/assistente-ia" element={<AiAssistant />} /> 
 
                 <Route path="/maratonar-filmes" element={<WatchlistMoviePage />} />
                 <Route path="/maratonar-series" element={<WatchlistTvPage />} />

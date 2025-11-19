@@ -53,6 +53,9 @@ const Header = ({ searchTerm = '', onSearchChange = () => { }}) => {
                         <li className="nav-item">
                             <Link className="nav-link" to="/lancamento">Lançamento</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/assistente-ia">Assistente IA</Link>
+                        </li>
                     </ul>
                     <ul className="navbar-nav ms-auto mb-0 mb-lg-0">
                         <li className="nav-item">
